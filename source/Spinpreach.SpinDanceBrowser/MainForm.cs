@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 using MetroFramework.Forms;
 using MetroFramework;
@@ -28,6 +29,8 @@ namespace Spinpreach.SpinDanceBrowser
             InitializeComponent();
             this.SwordsDanceBrowser.LoginCompletedEvent += SwordsDanceBrowser_LoginCompletedEvent;
             this.SwordsDanceBrowser.MuteChangedEvent += SwordsDanceBrowser_MuteChangedEvent;
+            Version version = Assembly.GetExecutingAssembly().GetName().Version;
+            this.Text = string.Format("回転剣舞 ver {0}.{1}.{2}", version.Major, version.Minor, version.Build);
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
@@ -51,15 +54,9 @@ namespace Spinpreach.SpinDanceBrowser
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 LoginInfo.Save(frm.LoginData);
-
-                //string message = "入力されたアカウントで再読み込みしますか？";
-                string message = "入力されたアカウントは次回起動時から使われます。";
+                string message = "入力されたアカウントは次回起動時から使用されます。";
                 string title = string.Empty;
                 MetroMessageBox.Show(this, message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //if (MetroMessageBox.Show(this, message, title, MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.Yes)
-                //{
-                //    this.SwordsDanceBrowser.Start();
-                //}
             }
         }
 

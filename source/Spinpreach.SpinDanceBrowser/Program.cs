@@ -18,7 +18,9 @@ namespace Spinpreach.SpinDanceBrowser
         [STAThread]
         static void Main()
         {
+
             bool run = true;
+
 #if !DEBUG
             // 二重起動を防止する
             using (Mutex mutex = new Mutex(false, Application.ProductName))

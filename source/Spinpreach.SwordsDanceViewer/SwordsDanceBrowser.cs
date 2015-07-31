@@ -134,7 +134,7 @@ namespace Spinpreach.SwordsDanceViewer
             this.frameReSize(this.Width, this.Height);
             this.audio = new Audio();
             this.audio.MuteChangedEvent += new Audio.MuteChangedEventHandler(this.Audio_MuteChanged);
-            this.OnLoginCompleted(new EventArgs()); // ← 読み込み完了は最後！！
+            this.OnLoginCompleted(new EventArgs()); // ← 読み込み完了通知は最後！！
         }
 
         private void Audio_MuteChanged(bool isMute)
