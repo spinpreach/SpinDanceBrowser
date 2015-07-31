@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwordsDanceBaseExample", "SwordsDanceBaseExample\SwordsDanceBaseExample.csproj", "{82F10361-FACD-4558-89AC-9FEB427B6276}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwordsDanceBase", "..\..\source\Spinpreach.SwordsDanceBase\SwordsDanceBase.csproj", "{11AA1E12-81DE-4DEB-988E-3064C0B2D964}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82F10361-FACD-4558-89AC-9FEB427B6276}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82F10361-FACD-4558-89AC-9FEB427B6276}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82F10361-FACD-4558-89AC-9FEB427B6276}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82F10361-FACD-4558-89AC-9FEB427B6276}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11AA1E12-81DE-4DEB-988E-3064C0B2D964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11AA1E12-81DE-4DEB-988E-3064C0B2D964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11AA1E12-81DE-4DEB-988E-3064C0B2D964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11AA1E12-81DE-4DEB-988E-3064C0B2D964}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
