@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
 using Microsoft.Win32;
 
 namespace Spinpreach.SwordsDanceViewer
@@ -8,11 +6,6 @@ namespace Spinpreach.SwordsDanceViewer
     public static class ViewerRegistry
     {
 
-        #region enum
-
-        #region ENUM_RENDERING_MODE
-
-        /// <summary>ENUM_RENDERING_MODE</summary>
         public enum ENUM_RENDERING_MODE
         {
             IE8 = 8000,
@@ -20,12 +13,6 @@ namespace Spinpreach.SwordsDanceViewer
             IE10 = 10000,
             IE11 = 11000,
         }
-
-        #endregion
-
-        #endregion
-
-        #region SetRenderingMode
 
         /// <summary>
         /// [ WebBrowser Control Rendering Mode ] を設定するメソッドです。
@@ -51,8 +38,6 @@ namespace Spinpreach.SwordsDanceViewer
             }
 
         }
-
-#endregion
 
     }
 }

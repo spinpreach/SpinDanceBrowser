@@ -11,25 +11,7 @@ namespace Spinpreach.SwordsDanceViewer
     public class Audio : IAudioSessionEvents
     {
 
-        #region EventHandler
-
-        #region MuteChanged
-
-        public delegate void MuteChangedEventHandler(bool isMuted);
-
-        public event MuteChangedEventHandler MuteChangedEvent;
-
-        protected virtual void OnMuteChanged(bool isMuted)
-        {
-            if (this.MuteChangedEvent != null)
-            {
-                this.MuteChangedEvent(isMuted);
-            }
-        }
-
-        #endregion
-
-        #endregion
+        public Action<bool> MuteChangedEvent;
 
         #region Member
 
@@ -130,7 +112,7 @@ namespace Spinpreach.SwordsDanceViewer
 
         public int OnSimpleVolumeChanged([In, MarshalAs(UnmanagedType.R4)] float volume, [In, MarshalAs(UnmanagedType.Bool)] bool isMuted, [In] ref Guid eventContext)
         {
-            this.OnMuteChanged(isMuted);
+            this.MuteChangedEvent?.Invoke(isMuted);
             return 0;
         }
 

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Nekoxy;
-using Codeplex.Data;
 using Newtonsoft.Json;
 using Spinpreach.SwordsDanceBase.api;
 
@@ -21,7 +20,7 @@ namespace Spinpreach.SwordsDanceBase
         {
             this.ProxyPort = ProxyPort;
             Proxy.Startup(ProxyPort);
-            Proxy.AfterSessionComplete_Text += this.AfterSessionComplete_Text;
+            //Proxy.AfterSessionComplete_Text += this.AfterSessionComplete_Text;
         }
 
         private void AfterSessionComplete_Text(Session s)

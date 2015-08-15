@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using System.Xml.Serialization;
 
 namespace Spinpreach.SwordsDanceViewer
@@ -12,15 +8,10 @@ namespace Spinpreach.SwordsDanceViewer
 
         private const string xmlname = "LoginInfo.xml";
 
-        public string UserID { get; set; }
-        public string PassWord { get; set; }
+        public string UserID { get; set; } = string.Empty;
+        public string PassWord { get; set; } = string.Empty;
 
-        public LoginInfo()
-        {
-            this.UserID = "";
-            this.PassWord = "";
-        }
-
+        public LoginInfo() { }
         public LoginInfo(string UserID, string PassWord)
         {
             this.UserID = UserID;
@@ -29,37 +20,32 @@ namespace Spinpreach.SwordsDanceViewer
 
         public bool IsExists()
         {
-            if (this.UserID == "" || this.PassWord == "")
-            {
-                return (false);
-            }
-            else
-            {
-                return (true);
-            }
+            if (string.Empty.Equals(this.UserID)) return (false);
+            if (string.Empty.Equals(this.PassWord)) return (false);
+            return (true);
         }
 
         public static void Save(LoginInfo value)
         {
             string sPath = Path.Combine(Directory.GetCurrentDirectory(), xmlname);
-            XmlSerializer serializer = new XmlSerializer(typeof(LoginInfo));
-            FileStream fs = new FileStream(sPath, FileMode.Create);
-            LoginInfo obj = new LoginInfo();
+            var xs = new XmlSerializer(typeof(LoginInfo));
+            var fs = new FileStream(sPath, FileMode.Create);
+            var obj = new LoginInfo();
             obj.UserID = Cipher.EncryptString(value.UserID);
             obj.PassWord = Cipher.EncryptString(value.PassWord);
-            serializer.Serialize(fs, obj);
+            xs.Serialize(fs, obj);
             fs.Close();
         }
 
         public static LoginInfo Load()
         {
-            LoginInfo obj = new LoginInfo();
+            var obj = new LoginInfo();
             string sPath = Path.Combine(Directory.GetCurrentDirectory(), xmlname);
             if (File.Exists(sPath))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(LoginInfo));
-                FileStream fs = new FileStream(sPath, FileMode.Open);
-                LoginInfo value = (LoginInfo)serializer.Deserialize(fs);
+                var xs = new XmlSerializer(typeof(LoginInfo));
+                var fs = new FileStream(sPath, FileMode.Open);
+                var value = (LoginInfo)xs.Deserialize(fs);
                 obj.UserID = Cipher.DecryptString(value.UserID);
                 obj.PassWord = Cipher.DecryptString(value.PassWord);
                 fs.Close();

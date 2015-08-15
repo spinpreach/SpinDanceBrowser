@@ -37,7 +37,7 @@ namespace Spinpreach.SpinDanceBrowser
                 var login = LoginInfo.Load();
                 if (!login.IsExists())
                 {
-                    LoginForm frm = new LoginForm();
+                    var frm = new LoginForm();
                     if (frm.ShowDialog() == DialogResult.OK)
                     {
                         login = frm.LoginData;
@@ -47,8 +47,8 @@ namespace Spinpreach.SpinDanceBrowser
 
                 if (login.IsExists())
                 {
-                    SessionWrapper sessionWrapper = new SessionWrapper(8890);
-                    Application.Run(new MainForm(sessionWrapper));
+                    var sw = new SessionWrapper(8890);
+                    Application.Run(new MainForm(sw));
                 }
             }
 

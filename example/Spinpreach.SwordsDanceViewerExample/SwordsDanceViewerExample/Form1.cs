@@ -16,8 +16,9 @@ namespace Spinpreach.SwordsDanceViewerExample
         public Form1()
         {
             InitializeComponent();
-            this.SwordsDanceBrowser.LoginCompletedEvent += SwordsDanceBrowser_LoginCompletedEvent;
-            this.SwordsDanceBrowser.MuteChangedEvent += SwordsDanceBrowser_MuteChangedEvent;
+            this.SwordsDanceBrowser.LoginCompletedEvent += this.SwordsDanceBrowser_LoginCompleted;
+            this.SwordsDanceBrowser.LoginErrorEvent += this.SwordsDanceBrowser_LoginError;
+            this.SwordsDanceBrowser.MuteChangedEvent += (isMute) => { this.Invoke(new Action<bool>(SwordsDanceBrowser_MuteChanged), isMute); };
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -48,20 +49,27 @@ namespace Spinpreach.SwordsDanceViewerExample
             this.SwordsDanceBrowser.ToggleMute();
         }
 
-        private void SwordsDanceBrowser_LoginCompletedEvent(object sender, EventArgs e)
+        private void SwordsDanceBrowser_LoginCompleted()
         {
             var isMuted = this.SwordsDanceBrowser.IsMute();
             if (isMuted == null) { return; }
             this.ToggleMuteButton.Text = (bool)isMuted ? "×" : "●";
         }
 
-        private void SwordsDanceBrowser_MuteChangedEvent(bool isMuted)
+        private void SwordsDanceBrowser_LoginError(Exception ex)
         {
-            this.Invoke((MethodInvoker)delegate ()
-            {
-                this.ToggleMuteButton.Text = isMuted ? "×" : "●";
-            });
-        }        
+            StringBuilder msg = new StringBuilder();
+            msg.AppendLine("ログインに失敗しました。");
+            msg.AppendLine("");
+            msg.AppendLine("※サーバが重い可能性があります。");
+            msg.AppendLine("　何度か[再読み込み]をためしてみてください。");
+            MessageBox.Show(msg.ToString(), "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void SwordsDanceBrowser_MuteChanged(bool isMuted)
+        {
+            this.ToggleMuteButton.Text = isMuted ? "×" : "●";
+        }
 
     }
 }

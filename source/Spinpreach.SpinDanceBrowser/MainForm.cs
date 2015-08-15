@@ -21,14 +21,15 @@ namespace Spinpreach.SpinDanceBrowser
     public partial class MainForm : MetroForm
     {
 
-        private SessionWrapper sessionWrapper;
+        private SessionWrapper sw;
 
-        public MainForm(SessionWrapper sessionWrapper)
+        public MainForm(SessionWrapper sw)
         {
-            this.sessionWrapper = sessionWrapper;
+            this.sw = sw;
             InitializeComponent();
-            this.SwordsDanceBrowser.LoginCompletedEvent += SwordsDanceBrowser_LoginCompletedEvent;
-            this.SwordsDanceBrowser.MuteChangedEvent += SwordsDanceBrowser_MuteChangedEvent;
+            this.SwordsDanceBrowser.LoginCompletedEvent += this.SwordsDanceBrowser_LoginCompleted;
+            this.SwordsDanceBrowser.LoginErrorEvent += this.SwordsDanceBrowser_LoginError;
+            this.SwordsDanceBrowser.MuteChangedEvent += (isMute) => { this.Invoke(new Action<bool>(SwordsDanceBrowser_MuteChanged), isMute); };
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             this.Text = string.Format("回転剣舞 ver {0}.{1}.{2}", version.Major, version.Minor, version.Build);
         }
@@ -50,7 +51,7 @@ namespace Spinpreach.SpinDanceBrowser
 
         private void SettingButton_Click(object sender, EventArgs e)
         {
-            LoginForm frm = new LoginForm();
+            var frm = new LoginForm();
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 LoginInfo.Save(frm.LoginData);
@@ -78,22 +79,24 @@ namespace Spinpreach.SpinDanceBrowser
             this.ScreenShotButton.Enabled = true;
         }
 
-        private void SwordsDanceBrowser_LoginCompletedEvent(object sender, EventArgs e)
+        private void SwordsDanceBrowser_LoginCompleted()
         {
             var isMuted = this.SwordsDanceBrowser.IsMute();
             if (isMuted == null) { return; }
-            this.MuteImageChange((bool)isMuted);
+            this.SwordsDanceBrowser_MuteChanged((bool)isMuted);
         }
 
-        private void SwordsDanceBrowser_MuteChangedEvent(bool isMuted)
+        private void SwordsDanceBrowser_LoginError(Exception ex)
         {
-            this.Invoke((MethodInvoker)delegate ()
-            {
-                this.MuteImageChange(isMuted);
-            });
+            StringBuilder msg = new StringBuilder();
+            msg.AppendLine("ログインに失敗しました。");
+            msg.AppendLine("");
+            msg.AppendLine("※サーバが重い可能性があります。");
+            msg.AppendLine("　何度か[再読み込み]をためしてみてください。");
+            MessageBox.Show(msg.ToString(), "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void MuteImageChange(bool isMuted)
+        private void SwordsDanceBrowser_MuteChanged(bool isMuted)
         {
             switch (isMuted)
             {

@@ -12,81 +12,21 @@ namespace Spinpreach.SwordsDanceViewer
     public class SwordsDanceBrowser : WebBrowser
     {
 
-        #region const
-
         const string GAME_URL = "http://www.dmm.com/netgame/social/-/gadgets/=/app_id=825012/";
 
-        #endregion
-
-        #region EventHandler
-
-        #region LoginCompleted
-
-        public event EventHandler LoginCompletedEvent;
-
-        protected virtual void OnLoginCompleted(EventArgs e)
-        {
-            if (this.LoginCompletedEvent != null)
-            {
-                this.LoginCompletedEvent(this, e);
-            }
-        }
-
-        #endregion
-
-        #region LoginError
-
-        public delegate void LoginErrorEventHandler(Exception ex);
-
-        public event LoginErrorEventHandler LoginErrorEvent;
-
-        protected virtual void OnLoginError(Exception ex)
-        {
-            if (this.LoginErrorEvent != null)
-            {
-                this.LoginErrorEvent(ex);
-            }
-        }
-
-        #endregion
-
-        #region MuteChanged
-
-        public delegate void MuteChangedEventHandler(bool isMuted);
-
-        public event MuteChangedEventHandler MuteChangedEvent;
-
-        protected virtual void OnMuteChanged(bool isMuted)
-        {
-            if (this.IsMute() == null) return;
-            if (this.MuteChangedEvent != null)
-            {
-                this.MuteChangedEvent(isMuted);
-            }
-            
-        }
-
-        #endregion
-
-        #endregion
-
-        #region Member
+        public Action LoginCompletedEvent;
+        public Action<Exception> LoginErrorEvent;
+        public Action<bool> MuteChangedEvent;
 
         public LoginInfo login { get; set; }
         private Audio audio;
 
-        #endregion
-
-        #region Constructor
-
         public SwordsDanceBrowser()
         {
             ViewerRegistry.SetRenderingMode(ViewerRegistry.ENUM_RENDERING_MODE.IE9);
-            this.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.SwordsDanceBrowser_DocumentCompleted);
-            this.Resize += new System.EventHandler(this.SwordsDanceBrowser_Resize);
+            this.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(this.SwordsDanceBrowser_DocumentCompleted);
+            this.Resize += new EventHandler(this.SwordsDanceBrowser_Resize);
         }
-
-        #endregion
 
         #region Event
 
@@ -117,13 +57,7 @@ namespace Spinpreach.SwordsDanceViewer
             }
             catch (Exception ex)
             {
-                //StringBuilder msg = new StringBuilder();
-                //msg.AppendLine("ログインに失敗しました。");
-                //msg.AppendLine("");
-                //msg.AppendLine("※サーバが重い可能性があります。");
-                //msg.AppendLine("　何度か[再読み込み]をためしてみてください。");
-                //MessageBox.Show(msg.ToString(), "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.OnLoginError(ex);
+                this.LoginErrorEvent?.Invoke(ex);
             }
         }
 
@@ -133,13 +67,14 @@ namespace Spinpreach.SwordsDanceViewer
             this.documentChanger();
             this.frameReSize(this.Width, this.Height);
             this.audio = new Audio();
-            this.audio.MuteChangedEvent += new Audio.MuteChangedEventHandler(this.Audio_MuteChanged);
-            this.OnLoginCompleted(new EventArgs()); // ← 読み込み完了通知は最後！！
+            this.audio.MuteChangedEvent += (isMute) => { this.Invoke(new Action<bool>(this.Audio_MuteChanged), isMute); };
+            this.LoginCompletedEvent?.Invoke(); // ← 読み込み完了通知は最後！！
         }
 
         private void Audio_MuteChanged(bool isMute)
         {
-            this.OnMuteChanged(isMute);
+            if (this.IsMute() == null) return;
+            this.MuteChangedEvent?.Invoke(isMute);
         }
 
         private void SwordsDanceBrowser_Resize(object sender, EventArgs e)
@@ -327,7 +262,6 @@ namespace Spinpreach.SwordsDanceViewer
             }
             catch (Exception)
             {
-
             }
 
         }

@@ -11,14 +11,12 @@ namespace Spinpreach.SwordsDanceBase
     public static class Proxy
     {
 
-        public delegate void EventHandler(Session s);
-
-        public static event EventHandler AfterSessionComplete_Text;
+        public static Action<Session> AfterSessionComplete_Text;
 
         public static void Startup(int ProxyPort)
         {
             HttpProxy.Startup(ProxyPort);
-            HttpProxy.AfterSessionComplete += s => Task.Run(() => SwordsDanceProxy_AfterSessionComplete(s));
+            HttpProxy.AfterSessionComplete += (s) => Task.Run(() => SwordsDanceProxy_AfterSessionComplete(s));
         }
 
         public static void Shutdown()
@@ -28,22 +26,14 @@ namespace Spinpreach.SwordsDanceBase
 
         private static void SwordsDanceProxy_AfterSessionComplete(Session s)
         {
-
-            //Console.WriteLine("******************************************************");
-
             if (s.Response.ContentType.Equals("text/html"))
             {
-                if (AfterSessionComplete_Text != null)
-                {
-                    //Console.WriteLine(string.Format("ContentType = {0}, PathAndQuery = {1}", s.Response.ContentType, s.Request.PathAndQuery));
-                    AfterSessionComplete_Text(s);
-                }
+                AfterSessionComplete_Text?.Invoke(s);
             }
             else
             {
                 //Console.WriteLine(string.Format("ContentType = {0}", s.Response.ContentType));
             }
-
         }
     }
 }
