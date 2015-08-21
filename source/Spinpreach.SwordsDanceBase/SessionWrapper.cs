@@ -19,7 +19,7 @@ namespace Spinpreach.SwordsDanceBase
         public SessionWrapper(int ProxyPort)
         {
             this.ProxyPort = ProxyPort;
-            Proxy.Startup(ProxyPort);
+            //Proxy.Startup(ProxyPort);
             //Proxy.AfterSessionComplete_Text += this.AfterSessionComplete_Text;
         }
 
