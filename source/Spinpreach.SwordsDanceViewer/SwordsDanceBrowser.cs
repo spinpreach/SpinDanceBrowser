@@ -126,25 +126,19 @@ namespace Spinpreach.SwordsDanceViewer
                 if (document == null) { return; }
 
                 //******************************************************************
-                var div1 = document.getElementById("dmm-ntgnavi-renew"); if (div1 == null) { return; }
-                var div2 = document.getElementById("twitter-widget-0"); if (div2 == null) { return; }
-                var div3 = document.getElementById("foot"); if (div3 == null) { return; }
-                var div4 = document.getElementById("ntg-recommend"); if (div4 == null) { return; }
-                var div5 = document.getElementById("game_frame"); if (div5 == null) { return; }
+                var div1 = document.getElementById("dmm-ntgnavi-renew");
+                //var div2 = document.getElementById("twitter-widget-0");
+                var div3 = document.getElementById("foot");
+                var div4 = document.getElementById("ntg-recommend");
+                var div5 = document.getElementById("game_frame");
 
                 //インラインフレーム内のDIV
-                var div6 = this.getElementById<mshtml.HTMLDivElement>("copyright"); if (div6 == null) return;
-                var div7 = this.getElementById<mshtml.HTMLDivElement>("html_contents"); if (div7 == null) return;
-                var div8 = this.getElementById<mshtml.HTMLDivElement>("faq_banner"); if (div8 == null) return;
+                var div6 = this.getElementById<mshtml.HTMLDivElement>("copyright");
+                var div7 = this.getElementById<mshtml.HTMLDivElement>("html_contents");
+                var div8 = this.getElementById<mshtml.HTMLDivElement>("faq_banner");
                 //******************************************************************
 
-                div1.style.visibility = "hidden";
-                div2.style.visibility = "hidden";
-                div3.style.visibility = "hidden";
-                div4.style.visibility = "hidden";
-                div6.style.visibility = "hidden";
-                div7.style.visibility = "hidden";
-                div8.style.visibility = "hidden";
+                #region css
 
                 StringBuilder css = new StringBuilder();
                 //*******************************************************************
@@ -166,8 +160,18 @@ namespace Spinpreach.SwordsDanceViewer
                 css.Append("    z-index: 1;");
                 css.Append("}");
                 //*******************************************************************
-                var target = (mshtml.HTMLDocument)div5.document;
-                target.createStyleSheet().cssText = css.ToString();
+
+                #endregion
+
+                if (div1 != null) div1.style.visibility = "hidden";
+                //if (div2 != null) div2.style.visibility = "hidden";
+                if (div3 != null) div3.style.visibility = "hidden";
+                if (div4 != null) div4.style.visibility = "hidden";
+                if (div5 != null) ((mshtml.HTMLDocument)div5.document).createStyleSheet().cssText = css.ToString();
+                if (div6 != null) div6.style.visibility = "hidden";
+                if (div7 != null) div7.style.visibility = "hidden";
+                if (div8 != null) div8.style.visibility = "hidden";
+
             }
             catch (Exception)
             {
