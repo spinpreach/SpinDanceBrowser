@@ -91,12 +91,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Spinpreach.SwordsDanceViewer\SwordsDancePlayer.csproj">
-      <Project>{a9e22c1b-aea5-4e65-a50c-cf45e2b941d4}</Project>
-      <Name>SwordsDancePlayer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Reload.png" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +104,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ScreenShot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Spinpreach.SwordsDancePlayer\SwordsDancePlayer.csproj">
+      <Project>{a9e22c1b-aea5-4e65-a50c-cf45e2b941d4}</Project>
+      <Name>SwordsDancePlayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
