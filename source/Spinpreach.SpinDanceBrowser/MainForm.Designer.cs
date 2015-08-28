@@ -156,6 +156,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.MenuBar);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.MenuBar.ResumeLayout(false);

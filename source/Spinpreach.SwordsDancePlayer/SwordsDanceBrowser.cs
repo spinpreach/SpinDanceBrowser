@@ -134,6 +134,7 @@ namespace Spinpreach.SwordsDancePlayer
 
                 //インラインフレーム内のDIV
                 var div6 = this.getElementById<mshtml.HTMLDivElement>("copyright");
+                var div9 = this.getElementById<mshtml.HTMLDivElement>("serial");
                 var div7 = this.getElementById<mshtml.HTMLDivElement>("html_contents");
                 var div8 = this.getElementById<mshtml.HTMLDivElement>("faq_banner");
                 //******************************************************************
@@ -171,6 +172,7 @@ namespace Spinpreach.SwordsDancePlayer
                 if (div6 != null) div6.style.visibility = "hidden";
                 if (div7 != null) div7.style.visibility = "hidden";
                 if (div8 != null) div8.style.visibility = "hidden";
+                if (div9 != null) div9.style.visibility = "hidden";
 
             }
             catch (Exception)
