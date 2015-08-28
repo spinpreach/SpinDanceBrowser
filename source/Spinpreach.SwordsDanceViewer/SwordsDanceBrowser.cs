@@ -23,7 +23,7 @@ namespace Spinpreach.SwordsDancePlayer
 
         public SwordsDanceBrowser()
         {
-            ViewerRegistry.SetRenderingMode(ViewerRegistry.ENUM_RENDERING_MODE.IE9);
+            RegistryHelper.SetBrowserEmulation(RegistryHelper.BROWSER_VERSION.IE9);
             this.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(this.SwordsDanceBrowser_DocumentCompleted);
             this.Resize += new EventHandler(this.SwordsDanceBrowser_Resize);
         }
