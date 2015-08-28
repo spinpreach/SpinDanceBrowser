@@ -1,37 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Nekoxy;
 using Newtonsoft.Json;
+
 using Spinpreach.SwordsDanceBase.api;
 
 namespace Spinpreach.SwordsDanceBase
 {
-
-    public class SessionWrapper
+    public class SwordsDanceDatabase
     {
 
-        public int ProxyPort { get; }
+        private NekoxyWrapper nw;
 
-        public SessionWrapper(int ProxyPort)
+        public SwordsDanceDatabase(NekoxyWrapper nw)
         {
-            this.ProxyPort = ProxyPort;
-            //Proxy.Startup(ProxyPort);
-            //Proxy.AfterSessionComplete_Text += this.AfterSessionComplete_Text;
+            this.nw = nw;
+            //this.nw.SessionComplete += this.nw_Log;
+            this.nw.SessionComplete += this.nw_SessionComplete;
         }
 
-        private void AfterSessionComplete_Text(Session s)
+        private void nw_Log(string api, string request, string response)
         {
+            try
+            {
+                var time = DateTime.Now;
+                SessionWriter.XmlWriter(api.Replace("/", "_"), response);
+                SessionWriter.JsonWriter(api.Replace("/", "_"), response);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(string.Format("{0} : {1}.{2}", "Exception", this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name));
+            }
+        }
 
-#if DEBUG
-            SessionWriter.XmlWriter(s.Request.PathAndQuery.Replace("/", "_"), s.Response.BodyAsString);
-            SessionWriter.JsonWriter(s.Request.PathAndQuery.Replace("/", "_"), s.Response.BodyAsString);
-#endif
-
-            switch (s.Request.PathAndQuery)
+        private void nw_SessionComplete(string api, string request, string response)
+        {
+            switch (api)
             {
 
                 // /login/start
@@ -49,13 +55,13 @@ namespace Spinpreach.SwordsDanceBase
 
                 case "/login/start":
 
-                    var hoge = JsonConvert.DeserializeObject<_login_start>(s.Response.BodyAsString);
+                    var hoge = JsonConvert.DeserializeObject<_login_start>(response);
 
                     break;
 
                 case "/home":
 
-                    var x = JsonConvert.DeserializeObject<_home>(s.Response.BodyAsString);
+                    var x = JsonConvert.DeserializeObject<_home>(response);
                     //var x = (_home)DynamicJson.Parse(s.Response.BodyAsString);
 
                     Console.WriteLine(string.Format("依頼札 = {0}", x.resource.bill));
@@ -67,12 +73,8 @@ namespace Spinpreach.SwordsDanceBase
 
                     break;
 
-                default:
-                    Debug.WriteLine(s.Request.PathAndQuery);
-                    break;
-
+                default: Console.WriteLine(api); break;
             }
-
         }
     }
 }

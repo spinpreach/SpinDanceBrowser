@@ -25,7 +25,7 @@ namespace Spinpreach.SwordsDancePlayer
         {
             RegistryHelper.SetBrowserEmulation(RegistryHelper.BROWSER_VERSION.IE9);
             this.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(this.SwordsDanceBrowser_DocumentCompleted);
-            this.Resize += new EventHandler(this.SwordsDanceBrowser_Resize);
+            //this.Resize += new EventHandler(this.SwordsDanceBrowser_Resize);
         }
 
         #region Event
@@ -68,6 +68,7 @@ namespace Spinpreach.SwordsDancePlayer
             this.frameReSize(this.Width, this.Height);
             this.audio = new Audio();
             this.audio.MuteChangedEvent += (isMute) => { this.Invoke(new Action<bool>(this.Audio_MuteChanged), isMute); };
+            this.Resize += new EventHandler(this.SwordsDanceBrowser_Resize);
             this.LoginCompletedEvent?.Invoke(); // ← 読み込み完了通知は最後！！
         }
 

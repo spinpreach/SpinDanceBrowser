@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 
-//using Spinpreach.SwordsDanceBase;
+using Spinpreach.SwordsDanceBase;
 using Spinpreach.SwordsDancePlayer;
 
 namespace Spinpreach.SpinDanceBrowser
@@ -18,12 +18,12 @@ namespace Spinpreach.SpinDanceBrowser
     public partial class MainForm : Form
     {
 
-        //private SessionWrapper sw;
+        private SwordsDanceDatabase database;
 
-        public MainForm()
+        public MainForm(SwordsDanceDatabase database)
         {
             InitializeComponent();
-            //this.sw = sw;
+            this.database = database;
             this.SwordsDanceBrowser.LoginCompletedEvent += this.SwordsDanceBrowser_LoginCompleted;
             this.SwordsDanceBrowser.LoginErrorEvent += this.SwordsDanceBrowser_LoginError;
             this.SwordsDanceBrowser.MuteChangedEvent += (isMute) => { this.Invoke(new Action<bool>(this.SwordsDanceBrowser_MuteChanged), isMute); };

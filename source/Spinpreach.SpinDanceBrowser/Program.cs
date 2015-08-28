@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//using Spinpreach.SwordsDanceBase;
+using Spinpreach.SwordsDanceBase;
 using Spinpreach.SwordsDancePlayer;
 
 namespace Spinpreach.SpinDanceBrowser
@@ -47,8 +47,13 @@ namespace Spinpreach.SpinDanceBrowser
 
                 if (login.IsExists())
                 {
-                    //var sw = new SessionWrapper(8890);
-                    Application.Run(new MainForm());
+
+                    using (var nw = new NekoxyWrapper(8890))
+                    {
+                        var database = new SwordsDanceDatabase(nw);
+                        Application.Run(new MainForm(database));
+                    }
+                    
                 }
             }
 
