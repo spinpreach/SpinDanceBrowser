@@ -10,23 +10,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 
-using MetroFramework.Forms;
-using MetroFramework;
-
 using Spinpreach.SwordsDanceBase;
 using Spinpreach.SwordsDanceViewer;
 
 namespace Spinpreach.SpinDanceBrowser
 {
-    public partial class MainForm : MetroForm
+    public partial class MainForm : Form
     {
 
         private SessionWrapper sw;
 
         public MainForm(SessionWrapper sw)
         {
-            this.sw = sw;
             InitializeComponent();
+            this.sw = sw;
             this.SwordsDanceBrowser.LoginCompletedEvent += this.SwordsDanceBrowser_LoginCompleted;
             this.SwordsDanceBrowser.LoginErrorEvent += this.SwordsDanceBrowser_LoginError;
             this.SwordsDanceBrowser.MuteChangedEvent += (isMute) => { this.Invoke(new Action<bool>(SwordsDanceBrowser_MuteChanged), isMute); };
@@ -39,45 +36,7 @@ namespace Spinpreach.SpinDanceBrowser
             this.SwordsDanceBrowser.Start();
         }
 
-        private void ReloadButton_Click(object sender, EventArgs e)
-        {
-            string message = "再読み込みしてもいいですか？";
-            string title = string.Empty;
-            if (MetroMessageBox.Show(this, message, title, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
-            {
-                this.SwordsDanceBrowser.Start();
-            }
-        }
-
-        private void SettingButton_Click(object sender, EventArgs e)
-        {
-            var frm = new LoginForm();
-            if (frm.ShowDialog() == DialogResult.OK)
-            {
-                LoginInfo.Save(frm.LoginData);
-                string message = "入力されたアカウントは次回起動時から使用されます。";
-                string title = string.Empty;
-                MetroMessageBox.Show(this, message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void MuteButton_Click(object sender, EventArgs e)
-        {
-            this.SwordsDanceBrowser.ToggleMute();
-        }
-
-        private void ScreenShotButton_Click(object sender, EventArgs e)
-        {
-            this.ScreenShotButton.Enabled = false;
-
-            string directory = string.Format(@"{0}\{1}", Directory.GetCurrentDirectory(), "ScreenShot");
-            if (!Directory.Exists(directory)) { Directory.CreateDirectory(directory); }
-            string path = string.Format(@"{0}\{1}.{2}", directory, DateTime.Now.ToString("yyyyMMdd-HHmmss.fff"), "png");
-
-            this.SwordsDanceBrowser.ScreenShot(path);
-
-            this.ScreenShotButton.Enabled = true;
-        }
+        #region SwordsDanceBrowser
 
         private void SwordsDanceBrowser_LoginCompleted()
         {
@@ -100,10 +59,63 @@ namespace Spinpreach.SpinDanceBrowser
         {
             switch (isMuted)
             {
-                case true: this.MuteButton.BackgroundImage = Properties.Resources.MuteonImage; break;
-                case false: this.MuteButton.BackgroundImage = Properties.Resources.MuteoffImage; break;
+                case true: this.MuteButton.Image = Properties.Resources.MuteonImage; break;
+                case false: this.MuteButton.Image = Properties.Resources.MuteoffImage; break;
             }
         }
+
+        #endregion
+
+        #region MenuBar
+
+        private void ReloadButton_Click(object sender, EventArgs e)
+        {
+            string message = "再読み込みしてもいいですか？";
+            string title = string.Empty;
+            if (MessageBox.Show(this, message, title, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                this.SwordsDanceBrowser.Start();
+            }
+        }
+
+        private void ScreenShotButton_Click(object sender, EventArgs e)
+        {
+            ((ToolStripButton)sender).Enabled = false;
+
+            string directory = string.Format(@"{0}\{1}", Directory.GetCurrentDirectory(), "ScreenShot");
+            if (!Directory.Exists(directory)) { Directory.CreateDirectory(directory); }
+            string path = string.Format(@"{0}\{1}.{2}", directory, DateTime.Now.ToString("yyyyMMdd-HHmmss.fff"), "png");
+            this.SwordsDanceBrowser.ScreenShot(path);
+
+            ((ToolStripButton)sender).Enabled = true;
+        }
+
+        private void MuteButton_Click(object sender, EventArgs e)
+        {
+            ((ToolStripButton)sender).Enabled = false;
+
+            this.SwordsDanceBrowser.ToggleMute();
+
+            ((ToolStripButton)sender).Enabled = true;
+        }
+
+        private void SettingButton_Click(object sender, EventArgs e)
+        {
+            ((ToolStripButton)sender).Enabled = false;
+
+            var frm = new LoginForm();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                LoginInfo.Save(frm.LoginData);
+                string message = "入力されたアカウントは次回起動時から使用されます。";
+                string title = string.Empty;
+                MessageBox.Show(this, message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            ((ToolStripButton)sender).Enabled = true;
+        }
+
+        #endregion
 
     }
 }

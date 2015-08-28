@@ -3,14 +3,14 @@
     partial class MainForm
     {
         /// <summary>
-        /// 必要なデザイナー変数です。
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// 使用中のリソースをすべてクリーンアップします。
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">マネージ リソースを破棄する場合は true を指定し、その他の場合は false を指定します。</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,133 +20,164 @@
             base.Dispose(disposing);
         }
 
-        #region Windows フォーム デザイナーで生成されたコード
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// デザイナー サポートに必要なメソッドです。このメソッドの内容を
-        /// コード エディターで変更しないでください。
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.metroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
             this.SwordsDanceBrowser = new Spinpreach.SwordsDanceViewer.SwordsDanceBrowser();
-            this.ScreenShotButton = new MetroFramework.Controls.MetroButton();
-            this.MuteButton = new MetroFramework.Controls.MetroButton();
-            this.ReloadButton = new MetroFramework.Controls.MetroButton();
-            this.SettingButton = new MetroFramework.Controls.MetroButton();
-            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).BeginInit();
+            this.MenuBar = new System.Windows.Forms.ToolStrip();
+            this.ReloadButton = new System.Windows.Forms.ToolStripButton();
+            this.ScreenShotButton = new System.Windows.Forms.ToolStripButton();
+            this.MuteButton = new System.Windows.Forms.ToolStripButton();
+            this.SettingButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.MenuBar.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // metroStyleManager
-            // 
-            this.metroStyleManager.Owner = this;
-            this.metroStyleManager.Style = MetroFramework.MetroColorStyle.Pink;
-            this.metroStyleManager.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // SwordsDanceBrowser
             // 
             this.SwordsDanceBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SwordsDanceBrowser.Location = new System.Drawing.Point(10, 60);
+            this.SwordsDanceBrowser.Location = new System.Drawing.Point(0, 0);
             this.SwordsDanceBrowser.login = null;
-            this.SwordsDanceBrowser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.SwordsDanceBrowser.MinimumSize = new System.Drawing.Size(23, 30);
+            this.SwordsDanceBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.SwordsDanceBrowser.Name = "SwordsDanceBrowser";
-            this.SwordsDanceBrowser.Size = new System.Drawing.Size(960, 580);
+            this.SwordsDanceBrowser.Size = new System.Drawing.Size(713, 494);
             this.SwordsDanceBrowser.TabIndex = 0;
+            // 
+            // MenuBar
+            // 
+            this.MenuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ReloadButton,
+            this.toolStripSeparator1,
+            this.ScreenShotButton,
+            this.toolStripSeparator2,
+            this.MuteButton,
+            this.toolStripSeparator3,
+            this.SettingButton,
+            this.toolStripSeparator4});
+            this.MenuBar.Location = new System.Drawing.Point(0, 0);
+            this.MenuBar.Name = "MenuBar";
+            this.MenuBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.MenuBar.Size = new System.Drawing.Size(713, 39);
+            this.MenuBar.TabIndex = 1;
+            this.MenuBar.Text = "MenuBar";
+            // 
+            // ReloadButton
+            // 
+            this.ReloadButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ReloadButton.Image = global::Spinpreach.SpinDanceBrowser.Properties.Resources.ReloadImage;
+            this.ReloadButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ReloadButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ReloadButton.Name = "ReloadButton";
+            this.ReloadButton.Size = new System.Drawing.Size(36, 36);
+            this.ReloadButton.Text = "Reload";
+            this.ReloadButton.ToolTipText = "Reload";
+            this.ReloadButton.Click += new System.EventHandler(this.ReloadButton_Click);
             // 
             // ScreenShotButton
             // 
-            this.ScreenShotButton.BackColor = System.Drawing.Color.Gray;
-            this.ScreenShotButton.BackgroundImage = global::Spinpreach.SpinDanceBrowser.Properties.Resources.ScreenShotImage;
-            this.ScreenShotButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ScreenShotButton.Location = new System.Drawing.Point(430, 14);
-            this.ScreenShotButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ScreenShotButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ScreenShotButton.Image = global::Spinpreach.SpinDanceBrowser.Properties.Resources.ScreenShotImage;
+            this.ScreenShotButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ScreenShotButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ScreenShotButton.Name = "ScreenShotButton";
-            this.ScreenShotButton.Size = new System.Drawing.Size(57, 38);
-            this.ScreenShotButton.Style = MetroFramework.MetroColorStyle.Purple;
-            this.ScreenShotButton.TabIndex = 11;
-            this.ScreenShotButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.ScreenShotButton.UseSelectable = true;
+            this.ScreenShotButton.Size = new System.Drawing.Size(36, 36);
+            this.ScreenShotButton.Text = "ScreenShot";
+            this.ScreenShotButton.ToolTipText = "ScreenShot";
             this.ScreenShotButton.Click += new System.EventHandler(this.ScreenShotButton_Click);
             // 
             // MuteButton
             // 
-            this.MuteButton.BackColor = System.Drawing.Color.Gray;
-            this.MuteButton.BackgroundImage = global::Spinpreach.SpinDanceBrowser.Properties.Resources.MuteoffImage;
-            this.MuteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.MuteButton.Location = new System.Drawing.Point(367, 14);
-            this.MuteButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MuteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.MuteButton.Image = global::Spinpreach.SpinDanceBrowser.Properties.Resources.MuteoffImage;
+            this.MuteButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.MuteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.MuteButton.Name = "MuteButton";
-            this.MuteButton.Size = new System.Drawing.Size(57, 38);
-            this.MuteButton.Style = MetroFramework.MetroColorStyle.Purple;
-            this.MuteButton.TabIndex = 12;
-            this.MuteButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.MuteButton.UseSelectable = true;
+            this.MuteButton.Size = new System.Drawing.Size(36, 36);
+            this.MuteButton.Text = "Mute";
+            this.MuteButton.ToolTipText = "Mute";
             this.MuteButton.Click += new System.EventHandler(this.MuteButton_Click);
-            // 
-            // ReloadButton
-            // 
-            this.ReloadButton.BackColor = System.Drawing.Color.Gray;
-            this.ReloadButton.BackgroundImage = global::Spinpreach.SpinDanceBrowser.Properties.Resources.ReloadImage;
-            this.ReloadButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ReloadButton.Location = new System.Drawing.Point(241, 14);
-            this.ReloadButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ReloadButton.Name = "ReloadButton";
-            this.ReloadButton.Size = new System.Drawing.Size(57, 38);
-            this.ReloadButton.Style = MetroFramework.MetroColorStyle.Purple;
-            this.ReloadButton.TabIndex = 13;
-            this.ReloadButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.ReloadButton.UseSelectable = true;
-            this.ReloadButton.Click += new System.EventHandler(this.ReloadButton_Click);
             // 
             // SettingButton
             // 
-            this.SettingButton.BackColor = System.Drawing.Color.Gray;
-            this.SettingButton.BackgroundImage = global::Spinpreach.SpinDanceBrowser.Properties.Resources.SettingImage;
-            this.SettingButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.SettingButton.Location = new System.Drawing.Point(304, 14);
-            this.SettingButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.SettingButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.SettingButton.Image = global::Spinpreach.SpinDanceBrowser.Properties.Resources.SettingImage;
+            this.SettingButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.SettingButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SettingButton.Name = "SettingButton";
-            this.SettingButton.Size = new System.Drawing.Size(57, 38);
-            this.SettingButton.Style = MetroFramework.MetroColorStyle.Purple;
-            this.SettingButton.TabIndex = 14;
-            this.SettingButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.SettingButton.UseSelectable = true;
+            this.SettingButton.Size = new System.Drawing.Size(36, 36);
+            this.SettingButton.Text = "Setting";
+            this.SettingButton.ToolTipText = "Setting";
             this.SettingButton.Click += new System.EventHandler(this.SettingButton_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 39);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.SwordsDanceBrowser);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 39);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(713, 494);
+            this.panel1.TabIndex = 2;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(980, 660);
-            this.Controls.Add(this.SettingButton);
-            this.Controls.Add(this.ReloadButton);
-            this.Controls.Add(this.MuteButton);
-            this.Controls.Add(this.ScreenShotButton);
-            this.Controls.Add(this.SwordsDanceBrowser);
-            this.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MinimumSize = new System.Drawing.Size(580, 100);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(713, 533);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.MenuBar);
             this.Name = "MainForm";
-            this.Padding = new System.Windows.Forms.Padding(10, 60, 10, 20);
-            this.Style = MetroFramework.MetroColorStyle.Pink;
-            this.StyleManager = this.metroStyleManager;
-            this.Text = "回転剣舞 ver 1.0.0";
-            this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Text = "MainForm";
             this.Shown += new System.EventHandler(this.MainForm_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).EndInit();
+            this.MenuBar.ResumeLayout(false);
+            this.MenuBar.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private MetroFramework.Components.MetroStyleManager metroStyleManager;
+
         private SwordsDanceViewer.SwordsDanceBrowser SwordsDanceBrowser;
-        private MetroFramework.Controls.MetroButton ScreenShotButton;
-        private MetroFramework.Controls.MetroButton SettingButton;
-        private MetroFramework.Controls.MetroButton ReloadButton;
-        private MetroFramework.Controls.MetroButton MuteButton;
+        private System.Windows.Forms.ToolStrip MenuBar;
+        private System.Windows.Forms.ToolStripButton ReloadButton;
+        private System.Windows.Forms.ToolStripButton ScreenShotButton;
+        private System.Windows.Forms.ToolStripButton MuteButton;
+        private System.Windows.Forms.ToolStripButton SettingButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.Panel panel1;
     }
 }
-
