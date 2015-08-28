@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Security.Cryptography;
+using System.Reflection;
+using System.IO;
 
 namespace Spinpreach.SwordsDanceViewer
 {
@@ -15,10 +17,7 @@ namespace Spinpreach.SwordsDanceViewer
 
         public static string EncryptString(string source)
         {
-            if (string.Empty.Equals(source))
-            {
-                return (string.Empty);
-            }
+            if (string.Empty.Equals(source)) return string.Empty;
 
             // 暗号化オブジェクトの作成
             RijndaelManaged rijndael = GetRmInstance();
@@ -37,8 +36,8 @@ namespace Spinpreach.SwordsDanceViewer
 
             // バイト型配列を文字列に変換して返す
             string ret = Convert.ToBase64String(encBytes);
-            return (ret);
 
+            return (ret);
         }
 
         #endregion
@@ -48,10 +47,7 @@ namespace Spinpreach.SwordsDanceViewer
         public static string DecryptString(string source)
         {
 
-            if (string.Empty.Equals(source))
-            {
-                return "";
-            }
+            if (string.Empty.Equals(source)) return string.Empty;
 
             try
             {
@@ -75,18 +71,14 @@ namespace Spinpreach.SwordsDanceViewer
                 string ret = Encoding.UTF8.GetString(decBytes);
 
                 return (ret);
-
             }
             catch (Exception)
             {
-                return "";
+                return string.Empty;
             }
-
         }
 
         #endregion
-
-        #region GetRmInstance
 
         /// <summary>
         /// パスワードから共有キーと初期化ベクタを生成する
@@ -94,20 +86,20 @@ namespace Spinpreach.SwordsDanceViewer
         /// <returns></returns>
         private static RijndaelManaged GetRmInstance()
         {
-            RijndaelManaged ret = new RijndaelManaged();
-
-            Rfc2898DeriveBytes deriveBytes = new Rfc2898DeriveBytes("spinpreach", Encoding.UTF8.GetBytes("SwordsDanceBrowser"));
+            //var password = Environment.UserName;
+            var password = "spinpreach";
+            var salt = Encoding.UTF8.GetBytes(Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly().ManifestModule.Name));
+            var deriveBytes = new Rfc2898DeriveBytes(password, salt);
 
             //反復処理回数を指定する デフォルトで1000回
             deriveBytes.IterationCount = 1000;
 
             //共有キーと初期化ベクタを生成する
+            var ret = new RijndaelManaged();
             ret.Key = deriveBytes.GetBytes(ret.BlockSize / 8);
             ret.IV = deriveBytes.GetBytes(ret.BlockSize / 8);
             return (ret);
         }
-
-        #endregion
 
     }
 }

@@ -13,14 +13,8 @@ namespace Spinpreach.SwordsDanceViewer
 
         public Action<bool> MuteChangedEvent;
 
-        #region Member
-
         private ISimpleAudioVolume AudioVolume;
         private IAudioSessionControl AudioControl;
-
-        #endregion
-
-        #region Constructor
 
         public Audio()
         {
@@ -55,12 +49,6 @@ namespace Spinpreach.SwordsDanceViewer
             }
         }
 
-        #endregion
-
-        #region method
-
-        #region IsMute
-
         public bool IsMute()
         {
             bool isMute = true;
@@ -68,20 +56,12 @@ namespace Spinpreach.SwordsDanceViewer
             return isMute;
         }
 
-        #endregion
-
-        #region ToggleMute
-
         public void ToggleMute()
         {
             bool isMute = true;
             AudioVolume.GetMute(out isMute);
             AudioVolume.SetMute(!isMute, Guid.Empty);
         }
-
-        #endregion
-
-        #endregion
 
         #region IAudioSession interface
 
