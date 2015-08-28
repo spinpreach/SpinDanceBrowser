@@ -1,4 +1,4 @@
-﻿namespace Spinpreach.SwordsDanceViewerExample
+﻿namespace Spinpreach.SwordsDancePlayerExample
 {
     partial class Form1
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SwordsDanceBrowser = new Spinpreach.SwordsDanceViewer.SwordsDanceBrowser();
+            this.SwordsDanceBrowser = new Spinpreach.SwordsDancePlayer.SwordsDanceBrowser();
             this.StartButton = new System.Windows.Forms.Button();
             this.ScreenShotButton = new System.Windows.Forms.Button();
             this.ToggleMuteButton = new System.Windows.Forms.Button();
@@ -92,7 +92,7 @@
 
         #endregion
 
-        private SwordsDanceViewer.SwordsDanceBrowser SwordsDanceBrowser;
+        private SwordsDancePlayer.SwordsDanceBrowser SwordsDanceBrowser;
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Button ScreenShotButton;
         private System.Windows.Forms.Button ToggleMuteButton;

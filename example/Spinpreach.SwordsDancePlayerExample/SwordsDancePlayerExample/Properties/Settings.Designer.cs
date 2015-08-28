@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Spinpreach.SwordsDanceViewerExample.Properties {
+namespace Spinpreach.SwordsDancePlayerExample.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

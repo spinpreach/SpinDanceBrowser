@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Spinpreach.SwordsDanceViewer;
+using Spinpreach.SwordsDancePlayer;
 
-namespace Spinpreach.SwordsDanceViewerExample
+namespace Spinpreach.SwordsDancePlayerExample
 {
     static class Program
     {

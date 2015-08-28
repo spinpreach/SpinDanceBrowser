@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwordsDanceViewerExample", "SwordsDanceViewerExample\SwordsDanceViewerExample.csproj", "{3EFDBF31-C065-4F7B-AADE-3B097B6046CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwordsDancePlayerExample", "SwordsDancePlayerExample\SwordsDancePlayerExample.csproj", "{3EFDBF31-C065-4F7B-AADE-3B097B6046CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwordsDanceViewer", "..\..\source\Spinpreach.SwordsDanceViewer\SwordsDanceViewer.csproj", "{A9E22C1B-AEA5-4E65-A50C-CF45E2B941D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwordsDancePlayer", "..\..\source\Spinpreach.SwordsDancePlayer\SwordsDancePlayer.csproj", "{A9E22C1B-AEA5-4E65-A50C-CF45E2B941D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

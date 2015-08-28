@@ -7,8 +7,8 @@
     <ProjectGuid>{3EFDBF31-C065-4F7B-AADE-3B097B6046CE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spinpreach.SwordsDanceViewerExample</RootNamespace>
-    <AssemblyName>SwordsDanceViewerExample</AssemblyName>
+    <RootNamespace>Spinpreach.SwordsDancePlayerExample</RootNamespace>
+    <AssemblyName>SwordsDancePlayerExample</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -82,9 +82,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\source\Spinpreach.SwordsDanceViewer\SwordsDanceViewer.csproj">
+    <ProjectReference Include="..\..\..\source\Spinpreach.SwordsDancePlayer\SwordsDancePlayer.csproj">
       <Project>{a9e22c1b-aea5-4e65-a50c-cf45e2b941d4}</Project>
-      <Name>SwordsDanceViewer</Name>
+      <Name>SwordsDancePlayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
