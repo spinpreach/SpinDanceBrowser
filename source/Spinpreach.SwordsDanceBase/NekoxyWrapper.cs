@@ -29,6 +29,7 @@ namespace Spinpreach.SwordsDanceBase
         private void Nekoxy_SessionComplete(Session s)
         {
             if (!s.Response.ContentType.Equals("text/html")) return;
+            if (!s.Response.BodyAsString.StartsWith(@"{")) return;
 
             var api = s.Request.PathAndQuery;
             var request = s.Request.BodyAsString;

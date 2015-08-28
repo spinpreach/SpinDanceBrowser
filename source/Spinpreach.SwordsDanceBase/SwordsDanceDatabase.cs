@@ -17,7 +17,7 @@ namespace Spinpreach.SwordsDanceBase
         public SwordsDanceDatabase(NekoxyWrapper nw)
         {
             this.nw = nw;
-            //this.nw.SessionComplete += this.nw_Log;
+            this.nw.SessionComplete += this.nw_Log;
             this.nw.SessionComplete += this.nw_SessionComplete;
         }
 
@@ -26,8 +26,10 @@ namespace Spinpreach.SwordsDanceBase
             try
             {
                 var time = DateTime.Now;
-                SessionWriter.XmlWriter(api.Replace("/", "_"), response);
-                SessionWriter.JsonWriter(api.Replace("/", "_"), response);
+                SessionWriter.JsonWriterTransaction(api, response);
+                SessionWriter.JsonWriterHistory(api, response, time);
+                SessionWriter.XmlWriterTransaction(api, response);
+                SessionWriter.XmlWriterHistory(api, response, time);
             }
             catch (Exception)
             {
@@ -62,6 +64,7 @@ namespace Spinpreach.SwordsDanceBase
                 case "/home":
 
                     var x = JsonConvert.DeserializeObject<_home>(response);
+                    //var x = JsonConvert.DeserializeObject<dynamic>(response);
                     //var x = (_home)DynamicJson.Parse(s.Response.BodyAsString);
 
                     Console.WriteLine(string.Format("依頼札 = {0}", x.resource.bill));
