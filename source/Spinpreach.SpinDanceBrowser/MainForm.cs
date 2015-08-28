@@ -10,23 +10,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 
-using Spinpreach.SwordsDanceBase;
-using Spinpreach.SwordsDanceViewer;
+//using Spinpreach.SwordsDanceBase;
+using Spinpreach.SwordsDancePlayer;
 
 namespace Spinpreach.SpinDanceBrowser
 {
     public partial class MainForm : Form
     {
 
-        private SessionWrapper sw;
+        //private SessionWrapper sw;
 
-        public MainForm(SessionWrapper sw)
+        public MainForm()
         {
             InitializeComponent();
-            this.sw = sw;
+            //this.sw = sw;
             this.SwordsDanceBrowser.LoginCompletedEvent += this.SwordsDanceBrowser_LoginCompleted;
             this.SwordsDanceBrowser.LoginErrorEvent += this.SwordsDanceBrowser_LoginError;
-            this.SwordsDanceBrowser.MuteChangedEvent += (isMute) => { this.Invoke(new Action<bool>(SwordsDanceBrowser_MuteChanged), isMute); };
+            this.SwordsDanceBrowser.MuteChangedEvent += (isMute) => { this.Invoke(new Action<bool>(this.SwordsDanceBrowser_MuteChanged), isMute); };
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             this.Text = string.Format("回転剣舞 ver {0}.{1}.{2}", version.Major, version.Minor, version.Build);
         }

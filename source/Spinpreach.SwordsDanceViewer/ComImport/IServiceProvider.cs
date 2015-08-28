@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Spinpreach.SwordsDanceViewer
+namespace Spinpreach.SwordsDancePlayer
 {
     [ComImport, Guid("6d5140c1-7436-11ce-8034-00aa006009fa"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown), ComVisible(false)]
     internal interface IServiceProvider

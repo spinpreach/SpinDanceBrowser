@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
 
-namespace Spinpreach.SwordsDanceViewer
+namespace Spinpreach.SwordsDancePlayer
 {
     public class SwordsDanceBrowser : WebBrowser
     {

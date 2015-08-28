@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Win32;
 
-namespace Spinpreach.SwordsDanceViewer
+namespace Spinpreach.SwordsDancePlayer
 {
     public static class ViewerRegistry
     {

@@ -6,7 +6,7 @@ using Vannatech.CoreAudio.Enumerations;
 using Vannatech.CoreAudio.Externals;
 using Vannatech.CoreAudio.Interfaces;
 
-namespace Spinpreach.SwordsDanceViewer
+namespace Spinpreach.SwordsDancePlayer
 {
     public class Audio : IAudioSessionEvents
     {

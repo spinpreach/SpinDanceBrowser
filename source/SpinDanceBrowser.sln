@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpinDanceBrowser", "Spinpre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwordsDanceBase", "Spinpreach.SwordsDanceBase\SwordsDanceBase.csproj", "{11AA1E12-81DE-4DEB-988E-3064C0B2D964}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwordsDanceViewer", "Spinpreach.SwordsDanceViewer\SwordsDanceViewer.csproj", "{A9E22C1B-AEA5-4E65-A50C-CF45E2B941D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwordsDancePlayer", "Spinpreach.SwordsDanceViewer\SwordsDancePlayer.csproj", "{A9E22C1B-AEA5-4E65-A50C-CF45E2B941D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

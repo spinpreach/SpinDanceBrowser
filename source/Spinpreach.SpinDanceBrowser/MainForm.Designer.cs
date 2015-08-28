@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SwordsDanceBrowser = new Spinpreach.SwordsDanceViewer.SwordsDanceBrowser();
+            this.SwordsDanceBrowser = new Spinpreach.SwordsDancePlayer.SwordsDanceBrowser();
             this.MenuBar = new System.Windows.Forms.ToolStrip();
             this.ReloadButton = new System.Windows.Forms.ToolStripButton();
-            this.ScreenShotButton = new System.Windows.Forms.ToolStripButton();
-            this.MuteButton = new System.Windows.Forms.ToolStripButton();
-            this.SettingButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ScreenShotButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.MuteButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.SettingButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1 = new System.Windows.Forms.Panel();
             this.MenuBar.SuspendLayout();
@@ -50,7 +50,7 @@
             this.SwordsDanceBrowser.login = null;
             this.SwordsDanceBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.SwordsDanceBrowser.Name = "SwordsDanceBrowser";
-            this.SwordsDanceBrowser.Size = new System.Drawing.Size(713, 494);
+            this.SwordsDanceBrowser.Size = new System.Drawing.Size(964, 702);
             this.SwordsDanceBrowser.TabIndex = 0;
             // 
             // MenuBar
@@ -67,7 +67,7 @@
             this.MenuBar.Location = new System.Drawing.Point(0, 0);
             this.MenuBar.Name = "MenuBar";
             this.MenuBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.MenuBar.Size = new System.Drawing.Size(713, 39);
+            this.MenuBar.Size = new System.Drawing.Size(964, 39);
             this.MenuBar.TabIndex = 1;
             this.MenuBar.Text = "MenuBar";
             // 
@@ -83,6 +83,11 @@
             this.ReloadButton.ToolTipText = "Reload";
             this.ReloadButton.Click += new System.EventHandler(this.ReloadButton_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
             // ScreenShotButton
             // 
             this.ScreenShotButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -94,6 +99,11 @@
             this.ScreenShotButton.Text = "ScreenShot";
             this.ScreenShotButton.ToolTipText = "ScreenShot";
             this.ScreenShotButton.Click += new System.EventHandler(this.ScreenShotButton_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
             // 
             // MuteButton
             // 
@@ -107,6 +117,11 @@
             this.MuteButton.ToolTipText = "Mute";
             this.MuteButton.Click += new System.EventHandler(this.MuteButton_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
+            // 
             // SettingButton
             // 
             this.SettingButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -119,21 +134,6 @@
             this.SettingButton.ToolTipText = "Setting";
             this.SettingButton.Click += new System.EventHandler(this.SettingButton_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
-            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
@@ -145,14 +145,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 39);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(713, 494);
+            this.panel1.Size = new System.Drawing.Size(964, 702);
             this.panel1.TabIndex = 2;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(713, 533);
+            this.ClientSize = new System.Drawing.Size(964, 741);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.MenuBar);
             this.Name = "MainForm";
@@ -168,7 +168,7 @@
 
         #endregion
 
-        private SwordsDanceViewer.SwordsDanceBrowser SwordsDanceBrowser;
+        private SwordsDancePlayer.SwordsDanceBrowser SwordsDanceBrowser;
         private System.Windows.Forms.ToolStrip MenuBar;
         private System.Windows.Forms.ToolStripButton ReloadButton;
         private System.Windows.Forms.ToolStripButton ScreenShotButton;

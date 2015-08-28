@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Reflection;
 using System.IO;
 
-namespace Spinpreach.SwordsDanceViewer
+namespace Spinpreach.SwordsDancePlayer
 {
     /// <summary>
     /// 暗号化クラス

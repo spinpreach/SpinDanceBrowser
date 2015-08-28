@@ -5,8 +5,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using Spinpreach.SwordsDanceBase;
-using Spinpreach.SwordsDanceViewer;
+//using Spinpreach.SwordsDanceBase;
+using Spinpreach.SwordsDancePlayer;
 
 namespace Spinpreach.SpinDanceBrowser
 {
@@ -47,8 +47,8 @@ namespace Spinpreach.SpinDanceBrowser
 
                 if (login.IsExists())
                 {
-                    var sw = new SessionWrapper(8890);
-                    Application.Run(new MainForm(sw));
+                    //var sw = new SessionWrapper(8890);
+                    Application.Run(new MainForm());
                 }
             }
 
