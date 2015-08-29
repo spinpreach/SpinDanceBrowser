@@ -25,7 +25,6 @@ namespace Spinpreach.SwordsDancePlayer
         {
             RegistryHelper.SetBrowserEmulation(RegistryHelper.BROWSER_VERSION.IE9);
             this.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(this.SwordsDanceBrowser_DocumentCompleted);
-            //this.Resize += new EventHandler(this.SwordsDanceBrowser_Resize);
         }
 
         #region Event

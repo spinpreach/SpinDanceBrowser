@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SwordsDanceBrowser = new Spinpreach.SwordsDancePlayer.SwordsDanceBrowser();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MenuBar = new System.Windows.Forms.ToolStrip();
             this.ReloadButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -39,19 +40,11 @@
             this.SettingButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.MissionNotify = new System.Windows.Forms.NotifyIcon(this.components);
+            this.SwordsDanceBrowser = new Spinpreach.SwordsDancePlayer.SwordsDanceBrowser();
             this.MenuBar.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // SwordsDanceBrowser
-            // 
-            this.SwordsDanceBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SwordsDanceBrowser.Location = new System.Drawing.Point(0, 0);
-            this.SwordsDanceBrowser.login = null;
-            this.SwordsDanceBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.SwordsDanceBrowser.Name = "SwordsDanceBrowser";
-            this.SwordsDanceBrowser.Size = new System.Drawing.Size(964, 702);
-            this.SwordsDanceBrowser.TabIndex = 0;
             // 
             // MenuBar
             // 
@@ -148,6 +141,21 @@
             this.panel1.Size = new System.Drawing.Size(964, 702);
             this.panel1.TabIndex = 2;
             // 
+            // MissionNotify
+            // 
+            this.MissionNotify.Icon = ((System.Drawing.Icon)(resources.GetObject("MissionNotify.Icon")));
+            this.MissionNotify.Visible = true;
+            // 
+            // SwordsDanceBrowser
+            // 
+            this.SwordsDanceBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SwordsDanceBrowser.Location = new System.Drawing.Point(0, 0);
+            this.SwordsDanceBrowser.login = null;
+            this.SwordsDanceBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.SwordsDanceBrowser.Name = "SwordsDanceBrowser";
+            this.SwordsDanceBrowser.Size = new System.Drawing.Size(964, 702);
+            this.SwordsDanceBrowser.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -155,6 +163,7 @@
             this.ClientSize = new System.Drawing.Size(964, 741);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.MenuBar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
@@ -180,5 +189,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.NotifyIcon MissionNotify;
     }
 }

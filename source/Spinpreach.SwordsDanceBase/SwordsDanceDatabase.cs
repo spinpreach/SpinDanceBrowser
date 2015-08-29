@@ -39,6 +39,9 @@ namespace Spinpreach.SwordsDanceBase
 
         private void nw_SessionComplete(string api, string request, string response)
         {
+
+            Console.WriteLine(api);
+
             switch (api)
             {
 

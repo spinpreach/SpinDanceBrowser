@@ -47,13 +47,11 @@ namespace Spinpreach.SpinDanceBrowser
 
                 if (login.IsExists())
                 {
-
                     using (var nw = new NekoxyWrapper(8890))
                     {
                         var database = new SwordsDanceDatabase(nw);
                         Application.Run(new MainForm(database));
-                    }
-                    
+                    }   
                 }
             }
 

@@ -5,10 +5,6 @@
  https://github.com/JamesNK/Newtonsoft.Json
  The MIT License (MIT)
 ************************************************************************
-ÅyMetroFrameworkÅz
- https://github.com/thielj/MetroFramework
- Copyright (c) 2013 Jens Thiel, 
-************************************************************************
 Åy.NET Core Audio APIsÅz
  https://netcoreaudio.codeplex.com/
  The MIT License (MIT)

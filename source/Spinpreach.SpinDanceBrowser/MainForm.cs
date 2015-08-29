@@ -103,14 +103,25 @@ namespace Spinpreach.SpinDanceBrowser
         {
             ((ToolStripButton)sender).Enabled = false;
 
-            var frm = new LoginForm();
-            if (frm.ShowDialog() == DialogResult.OK)
-            {
-                LoginInfo.Save(frm.LoginData);
-                string message = "入力されたアカウントは次回起動時から使用されます。";
-                string title = string.Empty;
-                MessageBox.Show(this, message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            this.MissionNotify.BalloonTipIcon = ToolTipIcon.Info;
+            this.MissionNotify.BalloonTipTitle = "【 遠征帰還通知 】";
+            this.MissionNotify.BalloonTipText = "XXXXXXXXXXXXXXx";
+            this.MissionNotify.Visible = true;
+            this.MissionNotify.ShowBalloonTip(2000);
+
+            //notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+            //notifyIcon.BalloonTipTitle = "【 遠征帰還通知 】";
+            //notifyIcon.BalloonTipText = "XXXXXXXXXXXXXXXXXXXXXx";
+            //notifyIcon.ShowBalloonTip(2000);
+
+            //var frm = new LoginForm();
+            //if (frm.ShowDialog() == DialogResult.OK)
+            //{
+            //    LoginInfo.Save(frm.LoginData);
+            //    string message = "入力されたアカウントは次回起動時から使用されます。";
+            //    string title = string.Empty;
+            //    MessageBox.Show(this, message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
 
             ((ToolStripButton)sender).Enabled = true;
         }
