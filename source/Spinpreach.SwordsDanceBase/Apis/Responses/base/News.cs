@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spinpreach.SwordsDanceBase.api
+namespace Spinpreach.SwordsDanceBase.Apis.Responses
 {
     public class News
     {

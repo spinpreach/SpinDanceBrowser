@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Spinpreach.SwordsDanceBase.Tables.Transactions;
+
+namespace Spinpreach.SwordsDanceBase.Tables
+{
+    public class Table
+    {
+        public Master master { get; set; } = new Master();
+        public Transaction transaction { get; set; } = new Transaction();
+        public TimeSpan ts = new TimeSpan(0);
+
+        public class Master
+        {
+        }
+
+        public class Transaction
+        {
+            public Party party { get; set; } = new Party();
+        }
+    }
+}

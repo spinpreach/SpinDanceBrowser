@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-using Spinpreach.SwordsDanceBase.api;
+using Spinpreach.SwordsDanceBase.Apis;
+using Spinpreach.SwordsDanceBase.Tables;
 
 namespace Spinpreach.SwordsDanceBase
 {
@@ -13,6 +14,18 @@ namespace Spinpreach.SwordsDanceBase
     {
 
         private NekoxyWrapper nw;
+
+        public Api api = new Api();
+        public Table table = new Table();
+        public ApiActions apiActions = new ApiActions();
+
+        public DateTime ServerTime
+        {
+            get
+            {
+                return DateTime.Now.AddTicks(this.table.ts.Ticks);
+            }
+        }
 
         public SwordsDanceDatabase(NekoxyWrapper nw)
         {
@@ -44,42 +57,12 @@ namespace Spinpreach.SwordsDanceBase
 
             switch (api)
             {
-
-                // /login/start
-                // /party/list
-                // /forge
-                // /produce
-                // /repair
-                // /composition
-                // /duty
-                // /mission/index
-                // /album/list
-                // /user/profile
-                // /shop/list
-                // /furniture/index
-
-                case "/login/start":
-
-                    var hoge = JsonConvert.DeserializeObject<_login_start>(response);
-
-                    break;
-
-                case "/home":
-
-                    var x = JsonConvert.DeserializeObject<_home>(response);
-                    //var x = JsonConvert.DeserializeObject<dynamic>(response);
-                    //var x = (_home)DynamicJson.Parse(s.Response.BodyAsString);
-
-                    Console.WriteLine(string.Format("依頼札 = {0}", x.resource.bill));
-                    Console.WriteLine(string.Format("木炭 = {0}", x.resource.charcoal));
-                    Console.WriteLine(string.Format("玉鋼 = {0}", x.resource.steel));
-                    Console.WriteLine(string.Format("冷却材 = {0}", x.resource.coolant));
-                    Console.WriteLine(string.Format("砥石 = {0}", x.resource.file));
-                    Console.WriteLine(string.Format("資源保有最大値 = {0}", x.resource.max_resource));
-
-                    break;
-
-                default: Console.WriteLine(api); break;
+                case "/login/start": (new Querys(this))._login_start(request, response); break;
+                case "/home": (new Querys(this))._home(request, response); break;
+                case "/conquest/complete": (new Querys(this))._conquest_complete(request, response); break;
+                case "/conquest/start": (new Querys(this))._conquest_start(request, response); break;
+                case "/conquest/cancel": (new Querys(this))._conquest_cancel(request, response); break;
+                default: break;
             }
         }
     }

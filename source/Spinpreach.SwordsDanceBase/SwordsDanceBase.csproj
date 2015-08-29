@@ -60,20 +60,38 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="api\base\Currency.cs" />
-    <Compile Include="api\base\News.cs" />
-    <Compile Include="api\base\Resource.cs" />
-    <Compile Include="api\_home.cs" />
-    <Compile Include="api\_login_start.cs" />
+    <Compile Include="ApiActions.cs" />
+    <Compile Include="Apis\Api.cs" />
+    <Compile Include="Apis\Requests\_conquest_cancel.cs" />
+    <Compile Include="Apis\Requests\_conquest_complete.cs" />
+    <Compile Include="Apis\Requests\_conquest_start.cs" />
+    <Compile Include="Apis\Requests\_home.cs" />
+    <Compile Include="Apis\Requests\_login_start.cs" />
+    <Compile Include="Apis\Responses\base\Currency.cs" />
+    <Compile Include="Apis\Responses\base\News.cs" />
+    <Compile Include="Apis\Responses\base\Party.cs" />
+    <Compile Include="Apis\Responses\base\Resource.cs" />
+    <Compile Include="Apis\Responses\base\Slot.cs" />
+    <Compile Include="Apis\Responses\_conquest_cancel.cs" />
+    <Compile Include="Apis\Responses\_conquest_complete.cs" />
+    <Compile Include="Apis\Responses\_conquest_start.cs" />
+    <Compile Include="Apis\Responses\_home.cs" />
+    <Compile Include="Apis\Responses\_login_start.cs" />
+    <Compile Include="Querys.cs" />
     <Compile Include="SwordsDanceDatabase.cs" />
     <Compile Include="NekoxyWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionWriter.cs" />
+    <Compile Include="Tables\Table.cs" />
+    <Compile Include="Tables\Transactions\Party.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tables\Masters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

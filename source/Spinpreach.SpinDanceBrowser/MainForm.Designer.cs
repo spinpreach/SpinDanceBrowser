@@ -40,8 +40,8 @@
             this.SettingButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.MissionNotify = new System.Windows.Forms.NotifyIcon(this.components);
             this.SwordsDanceBrowser = new Spinpreach.SwordsDancePlayer.SwordsDanceBrowser();
+            this.MissionNotify = new System.Windows.Forms.NotifyIcon(this.components);
             this.MenuBar.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -141,11 +141,6 @@
             this.panel1.Size = new System.Drawing.Size(964, 702);
             this.panel1.TabIndex = 2;
             // 
-            // MissionNotify
-            // 
-            this.MissionNotify.Icon = ((System.Drawing.Icon)(resources.GetObject("MissionNotify.Icon")));
-            this.MissionNotify.Visible = true;
-            // 
             // SwordsDanceBrowser
             // 
             this.SwordsDanceBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -155,6 +150,11 @@
             this.SwordsDanceBrowser.Name = "SwordsDanceBrowser";
             this.SwordsDanceBrowser.Size = new System.Drawing.Size(964, 702);
             this.SwordsDanceBrowser.TabIndex = 0;
+            // 
+            // MissionNotify
+            // 
+            this.MissionNotify.Icon = ((System.Drawing.Icon)(resources.GetObject("MissionNotify.Icon")));
+            this.MissionNotify.Visible = true;
             // 
             // MainForm
             // 
@@ -167,6 +167,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.MenuBar.ResumeLayout(false);
             this.MenuBar.PerformLayout();

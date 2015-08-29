@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spinpreach.SwordsDanceBase.api
+namespace Spinpreach.SwordsDanceBase.Apis.Responses
 {
     public class _login_start
     {
@@ -101,7 +101,7 @@ namespace Spinpreach.SwordsDanceBase.api
         /// <summary>
         /// 部隊情報
         /// </summary>
-        public dynamic party { get; set; }
+        public Dictionary<int, Party> party { get; set; }
 
         /// <summary>
         /// ?

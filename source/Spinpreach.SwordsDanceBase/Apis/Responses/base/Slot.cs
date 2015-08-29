@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spinpreach.SwordsDanceBase.api
+namespace Spinpreach.SwordsDanceBase.Apis.Responses
 {
-    public class Currency
+    public class Slot
     {
-        public string money { get; set; }
+        public string serial_id { get; set; }
     }
 }
