@@ -51,16 +51,16 @@ namespace Spinpreach.SwordsDancePlayer
 
         public bool IsMute()
         {
-            bool isMute = true;
-            AudioVolume.GetMute(out isMute);
-            return isMute;
+            bool mute = true;
+            AudioVolume.GetMute(out mute);
+            return mute;
         }
 
         public void ToggleMute()
         {
-            bool isMute = true;
-            AudioVolume.GetMute(out isMute);
-            AudioVolume.SetMute(!isMute, Guid.Empty);
+            bool mute = true;
+            AudioVolume.GetMute(out mute);
+            AudioVolume.SetMute(!mute, Guid.Empty);
         }
 
         #region IAudioSession interface

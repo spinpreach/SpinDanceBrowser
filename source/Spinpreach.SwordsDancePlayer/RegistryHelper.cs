@@ -30,7 +30,7 @@ namespace Spinpreach.SwordsDancePlayer
 
             try
             {
-                using (RegistryKey key = Registry.CurrentUser.CreateSubKey(subkey))
+                using (var key = Registry.CurrentUser.CreateSubKey(subkey))
                 {
                     key.SetValue(exename, value, RegistryValueKind.DWord);
                     key.Close();
