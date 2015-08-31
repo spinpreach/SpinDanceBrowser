@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Spinpreach.SwordsDanceBase
 {
-    public class ApiActions
+    public class ApiNotify
     {
         public Action _login_start;
         public Action _home;

@@ -17,7 +17,8 @@ namespace Spinpreach.SwordsDanceBase
 
         public Api api = new Api();
         public Table table = new Table();
-        public ApiActions apiActions = new ApiActions();
+        public ApiNotify apiNotify = new ApiNotify();
+        public TableNotify tableNotify = new TableNotify();
 
         public DateTime ServerTime
         {
@@ -44,9 +45,9 @@ namespace Spinpreach.SwordsDanceBase
                 SessionWriter.XmlWriterTransaction(api, response);
                 SessionWriter.XmlWriterHistory(api, response, time);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Console.WriteLine(string.Format("{0} : {1}.{2}", "Exception", this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name));
+                Console.WriteLine(ex.Message);
             }
         }
 
