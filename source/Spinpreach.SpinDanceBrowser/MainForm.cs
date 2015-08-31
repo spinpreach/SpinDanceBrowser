@@ -36,6 +36,7 @@ namespace Spinpreach.SpinDanceBrowser
             this.missionTimer = new MissionTimer(database);
             this.missionTimer.Notify += this.missionAction;
             //****************************************************************************************************************************************
+            Common.ShapeMemory.Load(this);
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             this.Text = string.Format("回転剣舞 ver {0}.{1}.{2}", version.Major, version.Minor, version.Build);
         }
@@ -47,6 +48,7 @@ namespace Spinpreach.SpinDanceBrowser
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Common.ShapeMemory.Save(this);
             this.missionTimer.Notify -= this.missionAction;
         }
 
