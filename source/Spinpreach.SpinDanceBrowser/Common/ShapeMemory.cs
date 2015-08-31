@@ -14,8 +14,8 @@ namespace Spinpreach.SpinDanceBrowser.Common
     public class ShapeMemory
     {
 
-        public Point location { get; set; }// = new Point();
-        public Size size { get; set; }// = new Size();
+        public Point location { get; set; }
+        public Size size { get; set; }
 
         public static void Save(Form form)
         {
