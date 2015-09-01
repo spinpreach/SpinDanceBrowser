@@ -27,12 +27,14 @@ namespace Spinpreach.SwordsDanceBase
             var directory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             directory = Path.Combine(directory, "log");
             directory = Path.Combine(directory, Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly().ManifestModule.Name));
+
             switch (type)
             {
                 case DOCUMENT.JSON: directory = Path.Combine(directory, "JSON"); break;
                 case DOCUMENT.XML: directory = Path.Combine(directory, "XML"); break;
                 case DOCUMENT.REQUEST: directory = Path.Combine(directory, "REQUEST"); break;
             }
+
             if (time != null)
             {
                 directory = Path.Combine(directory, "HISTORY");
@@ -43,7 +45,9 @@ namespace Spinpreach.SwordsDanceBase
             {
                 directory = Path.Combine(directory, "TRANSACTION");
             }
+
             if (!Directory.Exists(directory)) { Directory.CreateDirectory(directory); }
+
             return directory;
         }
 
@@ -65,7 +69,7 @@ namespace Spinpreach.SwordsDanceBase
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(string.Format("Exception : {0}.{1} >> {2}", ex.TargetSite.ReflectedType.FullName, ex.TargetSite.Name, ex.Message));
             }
         }
 
@@ -84,7 +88,7 @@ namespace Spinpreach.SwordsDanceBase
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(string.Format("Exception : {0}.{1} >> {2}", ex.TargetSite.ReflectedType.FullName, ex.TargetSite.Name, ex.Message));
             }
         }
 
