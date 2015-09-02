@@ -17,7 +17,7 @@ namespace Spinpreach.SwordsDanceBase.Apis.Responses
         public dynamic conquest { get; set; }
         public dynamic evolution { get; set; }
         public dynamic result { get; set; }
-        public dynamic resource { get; set; }
+        public Resource resource { get; set; }
         public dynamic item { get; set; }
         public dynamic reward { get; set; }
         public string t { get; set; }
