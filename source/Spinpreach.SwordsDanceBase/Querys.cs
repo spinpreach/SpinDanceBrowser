@@ -38,6 +38,16 @@ namespace Spinpreach.SwordsDanceBase
                 // サーバ時間とクライアント時間の誤差
                 this.database.table.ts = DateTime.Parse(res.now).Subtract(DateTime.Now);
 
+                #region transaction.castlekeep
+
+                // 部隊情報の登録
+                this.database.table.transaction.castlekeep = new Tables.Transactions.Castlekeep(res);
+
+                // 変更通知(Table)
+                this.database.tableNotify.transactions_castlekeep?.Invoke();
+
+                #endregion
+
                 #region transaction.party
 
                 // 部隊情報の登録

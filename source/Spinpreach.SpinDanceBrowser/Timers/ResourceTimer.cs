@@ -9,16 +9,15 @@ using Spinpreach.SwordsDanceBase;
 namespace Spinpreach.SpinDanceBrowser.Timers
 {
     /// <summary>
-    /// 遠征のタイマーイベントを発生させます。
-    /// ※遠征中の艦隊が存在する場合のみ発生します。
+    /// 資源ログのタイマーイベントを発生させます。
     /// </summary>
-    public class MissionTimer
+    public class ResourceTimer
     {
         public Action Notify;
         private SwordsDanceDatabase database;
         private Timer timer;
 
-        public MissionTimer(SwordsDanceDatabase database)
+        public ResourceTimer(SwordsDanceDatabase database)
         {
             this.database = database;
             this.timer = new Timer(1000);
@@ -30,13 +29,8 @@ namespace Spinpreach.SpinDanceBrowser.Timers
         {
             try
             {
-                // 遠征中の部隊を抽出
-                var q1 = this.database.table.transaction.party.Rows.Where(x => x.status == 2);
-
-                // 遠征帰還時間が現在時間になった部隊が存在するか？
-                var flag = !q1.Where(x => (int)this.database.ServerTime.Subtract((DateTime)x.finished_at).TotalSeconds == -1).Count().Equals(0);
-                
-                if (flag) this.Notify?.Invoke();
+                this.timer = new Timer(1000 * 60 * 5);
+                this.Notify?.Invoke();
             }
             catch (Exception ex)
             {

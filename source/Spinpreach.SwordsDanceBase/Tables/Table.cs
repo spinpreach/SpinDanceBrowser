@@ -19,6 +19,7 @@ namespace Spinpreach.SwordsDanceBase.Tables
 
         public class Transaction
         {
+            public Castlekeep castlekeep { get; set; } = new Castlekeep();
             public Party party { get; set; } = new Party();
             public Resource resource { get; set; } = new Resource();
         }

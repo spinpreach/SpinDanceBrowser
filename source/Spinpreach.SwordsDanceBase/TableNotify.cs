@@ -8,6 +8,7 @@ namespace Spinpreach.SwordsDanceBase
 {
     public class TableNotify
     {
+        public Action transactions_castlekeep;
         public Action transactions_party;
         public Action transactions_resource;
     }

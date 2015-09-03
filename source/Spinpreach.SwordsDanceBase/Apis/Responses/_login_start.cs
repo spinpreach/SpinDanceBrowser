@@ -16,27 +16,27 @@ namespace Spinpreach.SwordsDanceBase.Apis.Responses
         /// <summary>
         /// レベル
         /// </summary>
-        public string level { get; set; }
+        public int level { get; set; }
 
         /// <summary>
         /// 経験値
         /// </summary>
-        public string exp { get; set; }
+        public long exp { get; set; }
 
         /// <summary>
         /// 刀剣所有可能数
         /// </summary>
-        public string max_sword { get; set; }
+        public int max_sword { get; set; }
 
         /// <summary>
         /// 刀装所有可能数
         /// </summary>
-        public string max_equip { get; set; }
+        public int max_equip { get; set; }
 
         /// <summary>
         /// ?
         /// </summary>
-        public string tutorial { get; set; }
+        public int tutorial { get; set; }
 
         /// <summary>
         /// ?
@@ -44,17 +44,17 @@ namespace Spinpreach.SwordsDanceBase.Apis.Responses
         public string secretary { get; set; }
 
         /// <summary>
-        /// ?
+        /// 秘書刀剣ID
         /// </summary>
         public string secretary_serial_id { get; set; }
 
         /// <summary>
-        /// ?
+        /// 秘書刀剣HP
         /// </summary>
         public string secretary_hp { get; set; }
 
         /// <summary>
-        /// ?
+        /// 秘書刀剣MAXHP
         /// </summary>
         public string secretary_hp_max { get; set; }
 
@@ -81,17 +81,17 @@ namespace Spinpreach.SwordsDanceBase.Apis.Responses
         /// <summary>
         /// 最大部隊数
         /// </summary>
-        public string max_party { get; set; }
+        public int max_party { get; set; }
 
         /// <summary>
         /// 最大鍛練所
         /// </summary>
-        public string forge_slot { get; set; }
+        public int forge_slot { get; set; }
 
         /// <summary>
         /// 最大手入部屋
         /// </summary>
-        public string repair_slot { get; set; }
+        public int repair_slot { get; set; }
 
         /// <summary>
         /// ?

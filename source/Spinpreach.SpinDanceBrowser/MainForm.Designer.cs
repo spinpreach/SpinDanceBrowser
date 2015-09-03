@@ -39,6 +39,9 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.SettingButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.SubFormDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.ResourceGraphMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1 = new System.Windows.Forms.Panel();
             this.SwordsDanceBrowser = new Spinpreach.SwordsDancePlayer.SwordsDanceBrowser();
             this.MissionNotify = new System.Windows.Forms.NotifyIcon(this.components);
@@ -56,7 +59,9 @@
             this.MuteButton,
             this.toolStripSeparator3,
             this.SettingButton,
-            this.toolStripSeparator4});
+            this.toolStripSeparator4,
+            this.SubFormDropDownButton,
+            this.toolStripSeparator5});
             this.MenuBar.Location = new System.Drawing.Point(0, 0);
             this.MenuBar.Name = "MenuBar";
             this.MenuBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -132,6 +137,34 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 39);
             // 
+            // SubFormDropDownButton
+            // 
+            this.SubFormDropDownButton.AutoToolTip = false;
+            this.SubFormDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.SubFormDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ResourceGraphMenuItem});
+            this.SubFormDropDownButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.SubFormDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SubFormDropDownButton.Name = "SubFormDropDownButton";
+            this.SubFormDropDownButton.Size = new System.Drawing.Size(72, 36);
+            this.SubFormDropDownButton.Text = "SubForms";
+            // 
+            // ResourceGraphMenuItem
+            // 
+            this.ResourceGraphMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ResourceGraphMenuItem.Font = new System.Drawing.Font("Yu Gothic UI", 9F);
+            this.ResourceGraphMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ResourceGraphMenuItem.Name = "ResourceGraphMenuItem";
+            this.ResourceGraphMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.ResourceGraphMenuItem.Text = "Resource Graph";
+            this.ResourceGraphMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ResourceGraphMenuItem.Click += new System.EventHandler(this.ResourceGraphMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 39);
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.SwordsDanceBrowser);
@@ -191,5 +224,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.NotifyIcon MissionNotify;
+        private System.Windows.Forms.ToolStripDropDownButton SubFormDropDownButton;
+        private System.Windows.Forms.ToolStripMenuItem ResourceGraphMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }

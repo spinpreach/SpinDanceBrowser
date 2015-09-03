@@ -84,6 +84,7 @@
     <Compile Include="SessionWriter.cs" />
     <Compile Include="TableNotify.cs" />
     <Compile Include="Tables\Table.cs" />
+    <Compile Include="Tables\Transactions\Castlekeep.cs" />
     <Compile Include="Tables\Transactions\Party.cs" />
     <Compile Include="Tables\Transactions\Resource.cs" />
   </ItemGroup>
