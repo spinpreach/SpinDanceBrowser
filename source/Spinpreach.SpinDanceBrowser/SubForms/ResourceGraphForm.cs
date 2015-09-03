@@ -81,12 +81,14 @@ namespace Spinpreach.SpinDanceBrowser.SubForms
             var chartArea = new ChartArea();
 
             Axis ax = chartArea.AxisX;
+            ax.LabelStyle.Font = new Font("Yu Gothic UI", 9F);
             ax.Minimum = 1;
             ax.Maximum = this.Month.AddMonths(1).AddDays(-1).Day;
             ax.Interval = 1;
             ax.MajorGrid.LineColor = Color.LightGray;
 
             Axis ay = chartArea.AxisY;
+            ay.LabelStyle.Font = new Font("Yu Gothic UI", 9F);
             //ay.MajorGrid.Enabled = false;
             //ay.MajorTickMark.Interval = 10000;
             ay.Interval = 10000;
