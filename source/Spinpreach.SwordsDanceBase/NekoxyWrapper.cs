@@ -31,7 +31,7 @@ namespace Spinpreach.SwordsDanceBase
             if (!s.Response.ContentType.Equals("text/html")) return;
             if (!s.Response.BodyAsString.StartsWith(@"{")) return;
 
-            var api = s.Request.PathAndQuery;
+            var api = s.Request.PathAndQuery.Split('?').First();
             var request = s.Request.BodyAsString;
             var response = s.Response.BodyAsString;
 
