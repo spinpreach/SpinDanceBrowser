@@ -113,6 +113,7 @@ namespace Spinpreach.SwordsDancePlayer
                 var list1 = document1.getElementsByTagName("div").Cast<mshtml.HTMLParaElement>();
                 foreach (mshtml.HTMLParaElement item in list1)
                 {
+                    item.style.backgroundColor = "black";
                     if (item.id == "w") continue;
                     if (item.id == "main-ntg") continue;
                     if (item.id == "page") continue;
@@ -120,12 +121,16 @@ namespace Spinpreach.SwordsDancePlayer
                     item.style.display = "none";
                 }
 
-                var document2 = this.getFrameById(document1, "game_frame");
+                var frame = document1.getElementById("game_frame") as mshtml.HTMLFrameElement;
+                if (frame == null) return;
+
+                var document2 = this.ConvertToDocument(frame);
                 if (document2 == null) return;
 
                 var list2 = document2.getElementsByTagName("div").Cast<mshtml.HTMLParaElement>();
                 foreach (mshtml.HTMLParaElement item in list2)
                 {
+                    item.style.backgroundColor = "black";
                     if (item.id == "contents") continue;
                     if (item.style.height == "580px") continue;
                     if (item.id == "flash") continue;
@@ -134,6 +139,7 @@ namespace Spinpreach.SwordsDancePlayer
 
                 var body = document1.getElementsByTagName("body").item(0) as mshtml.HTMLBody;
                 body.style.overflow = "hidden";
+                body.style.backgroundColor = "black";
 
                 var main_ntg = list1.SingleOrDefault(x => x.id == "main-ntg");
                 if (main_ntg != null)
@@ -155,14 +161,10 @@ namespace Spinpreach.SwordsDancePlayer
             }
         }
 
-        private mshtml.HTMLDocument getFrameById(mshtml.HTMLDocument document, string frameId)
+        private mshtml.HTMLDocument ConvertToDocument(mshtml.HTMLFrameElement frame)
         {
             try
             {
-
-                if (document == null) return null;
-
-                var frame = document.getElementById(frameId) as mshtml.HTMLFrameElement;
                 if (frame == null) return null;
 
                 var window = frame.contentWindow as mshtml.HTMLWindow2;
@@ -180,7 +182,6 @@ namespace Spinpreach.SwordsDancePlayer
                 if (webBrowser == null) return null;
 
                 return webBrowser.Document as mshtml.HTMLDocument;
-
             }
             catch (Exception)
             {
@@ -197,11 +198,11 @@ namespace Spinpreach.SwordsDancePlayer
                 var document1 = this.Document.DomDocument as mshtml.HTMLDocument;
                 if (document1 == null) return;
 
-                var document2 = this.getFrameById(document1, "game_frame");
-                if (document2 == null) return;
-
-                var frame = document1.getElementById("game_frame");
+                var frame = document1.getElementById("game_frame") as mshtml.HTMLFrameElement;
                 if (frame == null) return;
+
+                var document2 = this.ConvertToDocument(frame);
+                if (document2 == null) return;
 
                 var embed = document2.getElementsByTagName("EMBED").item(0) as mshtml.HTMLEmbed;
                 if (embed == null) return;
@@ -244,7 +245,10 @@ namespace Spinpreach.SwordsDancePlayer
                 var document1 = this.Document.DomDocument as mshtml.HTMLDocument;
                 if (document1 == null) return;
 
-                var document2 = this.getFrameById(document1, "game_frame");
+                var frame = document1.getElementById("game_frame") as mshtml.HTMLFrameElement;
+                if (frame == null) return;
+
+                var document2 = this.ConvertToDocument(frame);
                 if (document2 == null) return;
 
                 var embed = document2.getElementsByTagName("EMBED").item(0) as mshtml.HTMLEmbed;
