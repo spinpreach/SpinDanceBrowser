@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Threading.Tasks;
 
 namespace Spinpreach.SwordsDancePlayer
 {
@@ -103,6 +103,13 @@ namespace Spinpreach.SwordsDancePlayer
 
         #region method
 
+        private void SetDefaultElementStyle(mshtml.HTMLParaElement element)
+        {
+            element.style.margin = "0px";
+            element.style.padding = "0px";
+            element.style.backgroundColor = "black";
+        }
+
         private void documentChanger()
         {
             try
@@ -110,14 +117,25 @@ namespace Spinpreach.SwordsDancePlayer
                 var document1 = this.Document.DomDocument as mshtml.HTMLDocument;
                 if (document1 == null) return;
 
-                var list1 = document1.getElementsByTagName("div").Cast<mshtml.HTMLParaElement>();
-                foreach (mshtml.HTMLParaElement item in list1)
+                var body = document1.getElementsByTagName("body").item(0) as mshtml.HTMLBody;
+                body.style.margin = "0px";
+                body.style.padding = "0px";
+                body.style.overflow = "hidden";
+                body.style.backgroundColor = "black";
+
+                var div1 = document1.getElementsByTagName("div").Cast<mshtml.HTMLParaElement>();
+                foreach (mshtml.HTMLParaElement item in div1)
                 {
-                    item.style.backgroundColor = "black";
+                    this.SetDefaultElementStyle(item);
                     if (item.id == "w") continue;
                     if (item.id == "main-ntg") continue;
                     if (item.id == "page") continue;
                     if (item.id == "area-game") continue;
+                    item.style.display = "none";
+                }
+                var p1 = document1.getElementsByTagName("p").Cast<mshtml.HTMLParaElement>();
+                foreach (mshtml.HTMLParaElement item in p1)
+                {
                     item.style.display = "none";
                 }
 
@@ -127,32 +145,31 @@ namespace Spinpreach.SwordsDancePlayer
                 var document2 = this.ConvertToDocument(frame);
                 if (document2 == null) return;
 
-                var list2 = document2.getElementsByTagName("div").Cast<mshtml.HTMLParaElement>();
-                foreach (mshtml.HTMLParaElement item in list2)
+                var div2 = document2.getElementsByTagName("div").Cast<mshtml.HTMLParaElement>();
+                foreach (mshtml.HTMLParaElement item in div2)
                 {
-                    item.style.backgroundColor = "black";
+                    this.SetDefaultElementStyle(item);
                     if (item.id == "contents") continue;
                     if (item.style.height == "580px") continue;
                     if (item.id == "flash") continue;
                     item.style.display = "none";
                 }
+                var p2 = document2.getElementsByTagName("p").Cast<mshtml.HTMLParaElement>();
+                foreach (mshtml.HTMLParaElement item in p2)
+                {
+                    item.style.display = "none";
+                }
 
-                var body = document1.getElementsByTagName("body").item(0) as mshtml.HTMLBody;
-                body.style.overflow = "hidden";
-                body.style.backgroundColor = "black";
-
-                var main_ntg = list1.SingleOrDefault(x => x.id == "main-ntg");
+                var main_ntg = div1.SingleOrDefault(x => x.id == "main-ntg");
                 if (main_ntg != null)
                 {
                     main_ntg.style.textAlign = "left";
                 }
 
-                var flashWrap = list2.SingleOrDefault(x => x.id == "contents");
-                if (flashWrap != null)
+                var contents = div2.SingleOrDefault(x => x.id == "contents");
+                if (contents != null)
                 {
-                    flashWrap.style.marginLeft = 0;
-                    flashWrap.style.marginRight = 0;
-                    flashWrap.style.textAlign = "left";
+                    contents.style.textAlign = "left";
                 }
             }
             catch (Exception ex)
