@@ -17,14 +17,17 @@ namespace Spinpreach.SwordsDancePlayer
         public Action LoginCompletedEvent;
         public Action<Exception> LoginErrorEvent;
         public Action<bool> MuteChangedEvent;
+        public Action<float> ZoomChangedEvent;
 
         public LoginInfo login { get; set; }
         private Audio audio;
+        private bool resize = true;
 
         public SwordsDanceBrowser()
         {
             RegistryHelper.SetBrowserEmulation(RegistryHelper.BROWSER_VERSION.IE9);
             this.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(this.SwordsDanceBrowser_DocumentCompleted);
+            this.Resize += (sender, e) => this.Zoom();
         }
 
         #region Event
@@ -64,10 +67,10 @@ namespace Spinpreach.SwordsDancePlayer
         {
             await Task.Run(() => { System.Threading.Thread.Sleep(500); }); // ← 要調整（画面読み込み待機）
             this.documentChanger();
-            this.frameReSize(this.Width, this.Height);
+            this.frameReSize();
+            this.Resize += (sender, e) => this.frameReSize();
             this.audio = new Audio();
             this.audio.MuteChangedEvent += (isMute) => { this.Invoke(new Action<bool>(this.Audio_MuteChanged), isMute); };
-            this.Resize += new EventHandler(this.SwordsDanceBrowser_Resize);
             this.LoginCompletedEvent?.Invoke(); // ← 読み込み完了通知は最後！！
         }
 
@@ -77,154 +80,152 @@ namespace Spinpreach.SwordsDancePlayer
             this.MuteChangedEvent?.Invoke(isMute);
         }
 
-        private void SwordsDanceBrowser_Resize(object sender, EventArgs e)
+        private void Zoom()
         {
-            this.frameReSize(this.Width, this.Height);
+            if (this.resize)
+            {
+                var wz = (double)this.Width / (double)960 * 100;
+                var hz = (double)this.Height / (double)580 * 100;
+                var zm = wz < hz ? wz : hz;
+                zm = zm * 100;
+                zm = Math.Floor(zm);
+                zm = zm / 100;
+                var obj = (float)zm;
+                this.ZoomChangedEvent?.Invoke(obj);
+            }
+            else
+            {
+                this.ZoomChangedEvent?.Invoke((float)100);
+            }
         }
 
         #endregion
 
         #region method
 
-        #region getElementById
-
-        private T getElementById<T>(string id)
-        {
-            try
-            {
-                var guidService = typeof(SHDocVw.IWebBrowserApp).GUID;
-                var riid = typeof(SHDocVw.IWebBrowser2).GUID;
-                var document = (mshtml.HTMLDocument)this.Document.DomDocument;
-                if (document == null) { return default(T); }
-                for (int i = 0; i < document.frames.length; i++)
-                {
-                    var provider = document.frames.item(i) as IServiceProvider; if (provider == null) continue;
-                    object ppvObject;
-                    provider.QueryService(guidService, riid, out ppvObject);
-                    var webBrowser = ppvObject as SHDocVw.IWebBrowser2; if (webBrowser == null) continue;
-                    var iframeDocument = webBrowser.Document as mshtml.HTMLDocument; if (iframeDocument == null) continue;
-                    var element = iframeDocument.getElementById(id); if (element == null) continue;
-                    return (T)element;
-                }
-                return default(T);
-            }
-            catch (Exception)
-            {
-                return default(T);
-            }
-        }
-
-        #endregion
-
-        #region StyleSheet
-
         private void documentChanger()
         {
             try
             {
-                var document = (mshtml.HTMLDocument)this.Document.DomDocument;
-                if (document == null) { return; }
+                var document1 = this.Document.DomDocument as mshtml.HTMLDocument;
+                if (document1 == null) return;
 
-                //******************************************************************
-                var div1 = document.getElementById("dmm-ntgnavi-renew");
-                //var div2 = document.getElementById("twitter-widget-0");
-                var div3 = document.getElementById("foot");
-                var div4 = document.getElementById("ntg-recommend");
-                var div5 = document.getElementById("game_frame");
+                var list1 = document1.getElementsByTagName("div").Cast<mshtml.HTMLParaElement>();
+                foreach (mshtml.HTMLParaElement item in list1)
+                {
+                    if (item.id == "w") continue;
+                    if (item.id == "main-ntg") continue;
+                    if (item.id == "page") continue;
+                    if (item.id == "area-game") continue;
+                    item.style.display = "none";
+                }
 
-                //インラインフレーム内のDIV
-                var div6 = this.getElementById<mshtml.HTMLDivElement>("copyright");
-                var div9 = this.getElementById<mshtml.HTMLDivElement>("serial");
-                var div7 = this.getElementById<mshtml.HTMLDivElement>("html_contents");
-                var div8 = this.getElementById<mshtml.HTMLDivElement>("faq_banner");
-                //******************************************************************
+                var document2 = this.getFrameById(document1, "game_frame");
+                if (document2 == null) return;
 
-                #region css
+                var list2 = document2.getElementsByTagName("div").Cast<mshtml.HTMLParaElement>();
+                foreach (mshtml.HTMLParaElement item in list2)
+                {
+                    if (item.id == "contents") continue;
+                    if (item.style.height == "580px") continue;
+                    if (item.id == "flash") continue;
+                    item.style.display = "none";
+                }
 
-                StringBuilder css = new StringBuilder();
-                //*******************************************************************
-                css.Append(".naviapp");
-                css.Append("{");
-                css.Append("    visibility: hidden;");
-                css.Append("}");
-                //*******************************************************************
-                css.Append("body");
-                css.Append("{");
-                css.Append("    overflow: hidden;");
-                css.Append("}");
-                //*******************************************************************
-                css.Append("iframe");
-                css.Append("{");
-                css.Append("    position: fixed;");
-                css.Append("    top: 0px;");
-                css.Append("    left: 0px;");
-                css.Append("    z-index: 1;");
-                css.Append("}");
-                //*******************************************************************
+                var body = document1.getElementsByTagName("body").item(0) as mshtml.HTMLBody;
+                body.style.overflow = "hidden";
 
-                #endregion
+                var main_ntg = list1.SingleOrDefault(x => x.id == "main-ntg");
+                if (main_ntg != null)
+                {
+                    main_ntg.style.textAlign = "left";
+                }
 
-                if (div1 != null) div1.style.visibility = "hidden";
-                //if (div2 != null) div2.style.visibility = "hidden";
-                if (div3 != null) div3.style.visibility = "hidden";
-                if (div4 != null) div4.style.visibility = "hidden";
-                if (div5 != null) ((mshtml.HTMLDocument)div5.document).createStyleSheet().cssText = css.ToString();
-                if (div6 != null) div6.style.visibility = "hidden";
-                if (div7 != null) div7.style.visibility = "hidden";
-                if (div8 != null) div8.style.visibility = "hidden";
-                if (div9 != null) div9.style.visibility = "hidden";
-
+                var flashWrap = list2.SingleOrDefault(x => x.id == "contents");
+                if (flashWrap != null)
+                {
+                    flashWrap.style.marginLeft = 0;
+                    flashWrap.style.marginRight = 0;
+                    flashWrap.style.textAlign = "left";
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(string.Format("Exception : {0}.{1} >> {2}", ex.TargetSite.ReflectedType.FullName, ex.TargetSite.Name, ex.Message));
             }
         }
 
-        #endregion
-
-        #region frameReSize
-
-        private void frameReSize(int width, int height)
+        private mshtml.HTMLDocument getFrameById(mshtml.HTMLDocument document, string frameId)
         {
             try
             {
-                var document = (mshtml.HTMLDocument)this.Document.DomDocument;
-                if (document == null) { return; }
 
-                //**************************************************************
-                // game_frame
-                //**************************************************************
-                var div1 = document.getElementById("game_frame"); if (div1 == null) { return; }
-                if (width > 960)
-                {
-                    int x = (width - 960);
-                    div1.style.left = string.Format("-{0}px", x);
-                    div1.style.width = string.Format("{0}px", width + x);
-                    div1.style.height = string.Format("{0}px", height);
-                }
-                else
-                {
-                    div1.style.left = string.Format("{0}px", 0);
-                    div1.style.width = string.Format("{0}px", width);
-                    div1.style.height = string.Format("{0}px", height);
-                }
+                if (document == null) return null;
 
-                //**************************************************************
-                // flash_object
-                //**************************************************************
-                var div2 = this.getElementById<mshtml.HTMLEmbed>("flash_object"); if (div2 == null) return;
-                div2.style.width = string.Format("{0}px", width);
-                div2.style.height = string.Format("{0}px", height);
+                var frame = document.getElementById(frameId) as mshtml.HTMLFrameElement;
+                if (frame == null) return null;
+
+                var window = frame.contentWindow as mshtml.HTMLWindow2;
+                if (window == null) return null;
+
+                var provider = window as IServiceProvider;
+                if (provider == null) return null;
+
+                var guidService = typeof(SHDocVw.IWebBrowserApp).GUID;
+                var riid = typeof(SHDocVw.IWebBrowser2).GUID;
+                object ppvObject;
+                provider.QueryService(guidService, riid, out ppvObject);
+
+                var webBrowser = ppvObject as SHDocVw.IWebBrowser2;
+                if (webBrowser == null) return null;
+
+                return webBrowser.Document as mshtml.HTMLDocument;
 
             }
             catch (Exception)
             {
+                return null;
             }
         }
 
-        #endregion
+        private void frameReSize()
+        {
+            try
+            {
+                if (this.Document == null) return;
 
-        #region Start
+                var document1 = this.Document.DomDocument as mshtml.HTMLDocument;
+                if (document1 == null) return;
+
+                var document2 = this.getFrameById(document1, "game_frame");
+                if (document2 == null) return;
+
+                var frame = document1.getElementById("game_frame");
+                if (frame == null) return;
+
+                var embed = document2.getElementsByTagName("EMBED").item(0) as mshtml.HTMLEmbed;
+                if (embed == null) return;
+
+                if (this.resize)
+                {
+                    frame.style.height = string.Format("{0}px", this.Height);
+                    frame.style.width = string.Format("{0}px", this.Width);
+                    embed.style.height = string.Format("{0}px", this.Height);
+                    embed.style.width = string.Format("{0}px", this.Width);
+                }
+                else
+                {
+                    frame.style.height = string.Format("{0}px", 580);
+                    frame.style.width = string.Format("{0}px", 960);
+                    embed.style.height = string.Format("{0}px", 580);
+                    embed.style.width = string.Format("{0}px", 960);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Format("Exception : {0}.{1} >> {2}", ex.TargetSite.ReflectedType.FullName, ex.TargetSite.Name, ex.Message));
+            }
+        }
 
         public void Start()
         {
@@ -236,45 +237,38 @@ namespace Spinpreach.SwordsDancePlayer
             }
         }
 
-        #endregion
-
-        #region ScreenShot
-
         public void ScreenShot(string Path)
         {
-
             try
             {
+                var document1 = this.Document.DomDocument as mshtml.HTMLDocument;
+                if (document1 == null) return;
 
-                var swf = this.getElementById<mshtml.HTMLEmbed>("flash_object"); if (swf == null) return;
+                var document2 = this.getFrameById(document1, "game_frame");
+                if (document2 == null) return;
 
-                int width = int.Parse(swf.width);
-                int height = int.Parse(swf.height);
+                var embed = document2.getElementsByTagName("EMBED").item(0) as mshtml.HTMLEmbed;
+                if (embed == null) return;
 
+                var width = int.Parse(embed.width);
+                var height = int.Parse(embed.height);
                 var image = new Bitmap(width, height, PixelFormat.Format24bppRgb);
                 var rect = new RECT { left = 0, top = 0, width = width, height = height, };
                 var tdevice = new DVTARGETDEVICE { tdSize = 0, };
-
                 using (var graphics = Graphics.FromImage(image))
                 {
                     var hdc = graphics.GetHdc();
-                    IViewObject viewObject = swf as IViewObject;
+                    IViewObject viewObject = embed as IViewObject;
                     viewObject.Draw(1, 0, IntPtr.Zero, tdevice, IntPtr.Zero, hdc, rect, null, IntPtr.Zero, IntPtr.Zero);
                     graphics.ReleaseHdc(hdc);
                 }
-
                 image.Save(Path, ImageFormat.Png);
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(string.Format("Exception : {0}.{1} >> {2}", ex.TargetSite.ReflectedType.FullName, ex.TargetSite.Name, ex.Message));
             }
-
         }
-
-        #endregion
-
-        #region IsMute
 
         public bool? IsMute()
         {
@@ -282,17 +276,18 @@ namespace Spinpreach.SwordsDancePlayer
             return this.audio.IsMute();
         }
 
-        #endregion
-
-        #region ToggleMute
-
         public void ToggleMute()
         {
             if (this.audio == null) { return; }
             this.audio.ToggleMute();
         }
 
-        #endregion
+        public void SetReSize(bool resize)
+        {
+            this.resize = resize;
+            this.frameReSize();
+            this.Zoom();
+        }
 
         #endregion
 
