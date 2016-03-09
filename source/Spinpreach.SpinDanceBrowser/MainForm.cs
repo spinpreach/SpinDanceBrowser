@@ -58,8 +58,9 @@ namespace Spinpreach.SpinDanceBrowser
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.missionTimer.Notify = null;
-            this.resourceTimer.Notify = null;
+            this.SwordsDanceBrowser.MuteChangedEvent -= this.MuteChangedAction;
+            this.missionTimer.Notify -= this.missionAction;
+            this.resourceTimer.Notify -= this.resourceAction;
             Common.ShapeMemory.Save(this);
         }
 
