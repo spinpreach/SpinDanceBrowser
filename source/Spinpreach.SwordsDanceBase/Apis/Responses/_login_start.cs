@@ -34,17 +34,17 @@ namespace Spinpreach.SwordsDanceBase.Apis.Responses
         public int max_equip { get; set; }
 
         /// <summary>
-        /// ?
+        // Tutorial(?)
         /// </summary>
         public int tutorial { get; set; }
 
         /// <summary>
-        /// ?
+        /// Secretary Sword ID(Party 1 Index 1,Will display in honmaru.)
         /// </summary>
         public string secretary { get; set; }
 
         /// <summary>
-        /// 秘書刀剣ID
+        /// 秘書刀剣シリアル(A unique number in server,used to distinguish different swords.)
         /// </summary>
         public string secretary_serial_id { get; set; }
 
@@ -59,12 +59,12 @@ namespace Spinpreach.SwordsDanceBase.Apis.Responses
         public string secretary_hp_max { get; set; }
 
         /// <summary>
-        /// ?
+        /// Money(小判)
         /// </summary>
         public Currency currency { get; set; }
 
         /// <summary>
-        /// ?
+        ///All the items you have.(like High Speed Repair / Amulet)
         /// </summary>
         public dynamic item { get; set; }
 
@@ -74,7 +74,7 @@ namespace Spinpreach.SwordsDanceBase.Apis.Responses
         public Resource resource { get; set; }
 
         /// <summary>
-        /// 
+        ///List of all the equipments you have.
         /// </summary>
         public dynamic equip { get; set; }
 
@@ -94,7 +94,7 @@ namespace Spinpreach.SwordsDanceBase.Apis.Responses
         public int repair_slot { get; set; }
 
         /// <summary>
-        /// ?
+        /// Background.(景趣)
         /// </summary>
         public dynamic furniture { get; set; }
 
@@ -104,27 +104,27 @@ namespace Spinpreach.SwordsDanceBase.Apis.Responses
         public Dictionary<int, Party> party { get; set; }
 
         /// <summary>
-        /// ?
+        /// Internal Affairs.(内番)
         /// </summary>
         public object duty { get; set; }
 
         /// <summary>
-        /// ?
+        /// Swords that have gone.(Already deprecated)
         /// </summary>
         public object leave { get; set; }
 
         /// <summary>
-        /// ?
+        /// Swords that have back.(Already deprecated)
         /// </summary>
         public object back { get; set; }
 
         /// <summary>
-        /// ?
+        ///Notifications.(The ad box when you log in the game)
         /// </summary>
         public News[] news { get; set; }
 
         /// <summary>
-        /// ?
+        /// Token.(Used to communication with game server)
         /// </summary>
         public string t { get; set; }
 
